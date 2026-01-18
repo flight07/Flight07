@@ -71,6 +71,29 @@ function searchHotels() {
   window.open(url, '_blank');
 }
 </script>
+  <div id="activities" class="content">
+  <h2>Things to Do & Attractions</h2>
+
+  <div class="search-box">
+    <input type="text" id="activityCity" placeholder="Enter city (e.g., Bali, Dubai, Singapore)" />
+
+    <select id="activityCategory">
+      <option value="">All Activities</option>
+      <option value="attractions">Attractions</option>
+      <option value="tours">Tours</option>
+      <option value="transport">Transport</option>
+      <option value="theme-parks">Theme Parks</option>
+      <option value="day-trips">Day Trips</option>
+    </select>
+
+    <button onclick="searchActivities()">Explore Activities</button>
+
+    <p style="text-align:center;font-size:14px;color:#666;margin-top:10px;">
+      ⭐ Book top-rated tours & experiences — instant confirmation
+    </p>
+  </div>
+</div>
 
 </body>
 </html>
+
