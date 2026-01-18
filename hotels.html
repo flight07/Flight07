@@ -206,10 +206,10 @@
       font-size: 13px;
     }
 
-    /* ===== FORM LAYOUT: SAME SIZE EVERYWHERE ===== */
+    /* ===== FORM ===== */
     .form{
-      max-width: 720px;     /* ✅ makes all inputs same width */
-      margin: 0 auto;       /* ✅ centers the form */
+      max-width: 720px;
+      margin: 0 auto;
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
@@ -242,9 +242,7 @@
       box-shadow: 0 0 0 4px rgba(37,99,235,.12);
     }
 
-    .full{
-      grid-column: 1 / -1;
-    }
+    .full{ grid-column: 1 / -1; }
 
     .cta{
       width: 100%;
@@ -263,6 +261,7 @@
       box-shadow: 0 12px 24px rgba(37,99,235,.25);
     }
 
+    /* ✅ CHIPS AS BUTTONS (more reliable) */
     .quick{
       max-width: 720px;
       margin: 12px auto 0;
@@ -280,6 +279,7 @@
       font-weight: 900;
       cursor:pointer;
       transition: .18s ease;
+      user-select:none;
     }
     .chip:hover{
       transform: translateY(-1px);
@@ -311,7 +311,7 @@
 
 <body>
 
-  <!-- ✅ TOP NAV WITH HOME BUTTON -->
+  <!-- ✅ TOP NAV -->
   <div class="topbar">
     <div class="topbar-inner">
       <div class="brand">
@@ -323,7 +323,6 @@
       </div>
 
       <div class="nav-actions">
-        <!-- ✅ HOME BUTTON (CHANGE PATH IF NEEDED) -->
         <a class="btn" href="./index.html">🏠 Home</a>
         <a class="btn primary" href="#search">🔎 Search</a>
       </div>
@@ -335,7 +334,7 @@
     <!-- ✅ HERO -->
     <div class="hero">
       <h1>Find the Best Travel Deals</h1>
-      <p>Search hotels, explore top attractions, and book transport deals — clean, fast and mobile friendly.</p>
+      <p>Search hotels, explore attractions, and book transport deals — clean, fast and mobile friendly.</p>
 
       <div class="badge-row">
         <div class="badge">✅ Fast Search</div>
@@ -373,16 +372,17 @@
         </div>
 
         <div class="field full">
-          <button class="cta" onclick="searchHotels()">Search Hotels →</button>
+          <button class="cta" type="button" onclick="searchHotels()">Search Hotels →</button>
         </div>
       </div>
 
+      <!-- ✅ Chips -->
       <div class="quick">
-        <div class="chip" onclick="quickHotel('Dubai')">Dubai</div>
-        <div class="chip" onclick="quickHotel('Bali')">Bali</div>
-        <div class="chip" onclick="quickHotel('Singapore')">Singapore</div>
-        <div class="chip" onclick="quickHotel('Melbourne')">Melbourne</div>
-        <div class="chip" onclick="quickHotel('Delhi')">Delhi</div>
+        <button class="chip" type="button" onclick="quickHotel('Dubai')">Dubai</button>
+        <button class="chip" type="button" onclick="quickHotel('Bali')">Bali</button>
+        <button class="chip" type="button" onclick="quickHotel('Singapore')">Singapore</button>
+        <button class="chip" type="button" onclick="quickHotel('Melbourne')">Melbourne</button>
+        <button class="chip" type="button" onclick="quickHotel('Delhi')">Delhi</button>
       </div>
 
       <div class="note">Tip: Popular cities get more bookings and higher commissions.</div>
@@ -411,7 +411,7 @@
         </div>
 
         <div class="field full">
-          <button class="cta" onclick="searchActivities()">Explore Activities →</button>
+          <button class="cta" type="button" onclick="searchActivities()">Explore Activities →</button>
         </div>
       </div>
 
@@ -441,7 +441,7 @@
         </div>
 
         <div class="field full">
-          <button class="cta" onclick="searchTransport()">Find Transport →</button>
+          <button class="cta" type="button" onclick="searchTransport()">Find Transport →</button>
         </div>
       </div>
 
@@ -454,116 +454,100 @@
 
   </div>
 
- <script>
-  // ✅ Your Travelpayouts / Klook affiliate short link
-  const KLOOK_AFF_LINK = "https://klook.tpx.lt/1KRa6gs9";
+  <script>
+    // ✅ Your Travelpayouts / Klook affiliate short link
+    const KLOOK_AFF_LINK = "https://klook.tpx.lt/1KRa6gs9";
 
-  // ✅ Tabs
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      const targetId = tab.dataset.tab;
-      const target = document.getElementById(targetId);
-      if (!target) return;
+    // ✅ Tabs
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.dataset.tab;
+        const target = document.getElementById(targetId);
+        if (!target) return;
 
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
 
-      tab.classList.add('active');
-      target.classList.add('active');
-    });
-  });
-
-  // ✅ Default dates (today+2 to today+5)
-  (function setDefaultDates() {
-    const today = new Date();
-    const checkinDate = new Date(today);
-    const checkoutDate = new Date(today);
-
-    checkinDate.setDate(today.getDate() + 2);
-    checkoutDate.setDate(today.getDate() + 5);
-
-    const checkinEl = document.getElementById('checkin');
-    const checkoutEl = document.getElementById('checkout');
-
-    if (checkinEl && checkoutEl) {
-      checkinEl.value = checkinDate.toISOString().split('T')[0];
-      checkoutEl.value = checkoutDate.toISOString().split('T')[0];
-    }
-  })();
-
-  // ✅ Quick chips (Hotels)
-  function quickHotel(city) {
-    const destEl = document.getElementById('destination');
-    if (destEl) destEl.value = city;
-    searchHotels();
-  }
-
-  // ✅ HOTELS SEARCH (through your affiliate link)
-  function searchHotels() {
-    const destination = document.getElementById('destination').value.trim();
-    const checkin = document.getElementById('checkin').value;
-    const checkout = document.getElementById('checkout').value;
-
-    if (!destination || !checkin || !checkout) {
-      alert("Please enter destination and dates.");
-      return;
-    }
-
-    if (new Date(checkout) <= new Date(checkin)) {
-      alert("Check-out must be after check-in.");
-      return;
-    }
-
-    const params = new URLSearchParams({
-      q: destination,
-      check_in: checkin,
-      check_out: checkout
+        tab.classList.add('active');
+        target.classList.add('active');
+      });
     });
 
-    const url = `${KLOOK_AFF_LINK}?${params.toString()}`;
-    window.open(url, "_blank");
-  }
+    // ✅ Default dates
+    (function setDefaultDates() {
+      const today = new Date();
+      const checkinDate = new Date(today);
+      const checkoutDate = new Date(today);
 
-  // ✅ ACTIVITIES SEARCH (through your affiliate link)
-  function searchActivities() {
-    const city = document.getElementById('activityCity').value.trim();
-    const category = document.getElementById('activityCategory').value;
+      checkinDate.setDate(today.getDate() + 2);
+      checkoutDate.setDate(today.getDate() + 5);
 
-    if (!city) {
-      alert("Please enter a city.");
-      return;
+      document.getElementById('checkin').value = checkinDate.toISOString().split('T')[0];
+      document.getElementById('checkout').value = checkoutDate.toISOString().split('T')[0];
+    })();
+
+    // ✅ FORCE FUNCTIONS GLOBAL (FIXES CHIPS 100%)
+    window.quickHotel = function(city) {
+      document.getElementById('destination').value = city;
+      window.searchHotels();
     }
 
-    const params = new URLSearchParams({
-      city: city
-    });
+    window.searchHotels = function() {
+      const destination = document.getElementById('destination').value.trim();
+      const checkin = document.getElementById('checkin').value;
+      const checkout = document.getElementById('checkout').value;
 
-    if (category) params.append("category", category);
+      if (!destination || !checkin || !checkout) {
+        alert("Please enter destination and dates.");
+        return;
+      }
+      if (new Date(checkout) <= new Date(checkin)) {
+        alert("Check-out must be after check-in.");
+        return;
+      }
 
-    const url = `${KLOOK_AFF_LINK}?${params.toString()}`;
-    window.open(url, "_blank");
-  }
+      const params = new URLSearchParams({
+        q: destination,
+        check_in: checkin,
+        check_out: checkout
+      });
 
-  // ✅ TRANSPORT SEARCH (through your affiliate link)
-  function searchTransport() {
-    const city = document.getElementById('transportCity').value.trim();
-    const type = document.getElementById('transportType').value;
-
-    if (!city) {
-      alert("Please enter a city or airport.");
-      return;
+      const url = `${KLOOK_AFF_LINK}?${params.toString()}`;
+      window.open(url, "_blank");
     }
 
-    const params = new URLSearchParams({
-      city: city
-    });
+    window.searchActivities = function() {
+      const city = document.getElementById('activityCity').value.trim();
+      const category = document.getElementById('activityCategory').value;
 
-    if (type) params.append("category", type);
+      if (!city) {
+        alert("Please enter a city.");
+        return;
+      }
 
-    const url = `${KLOOK_AFF_LINK}?${params.toString()}`;
-    window.open(url, "_blank");
-  }
-</script>
+      const params = new URLSearchParams({ city });
+      if (category) params.append("category", category);
 
+      const url = `${KLOOK_AFF_LINK}?${params.toString()}`;
+      window.open(url, "_blank");
+    }
 
+    window.searchTransport = function() {
+      const city = document.getElementById('transportCity').value.trim();
+      const type = document.getElementById('transportType').value;
 
+      if (!city) {
+        alert("Please enter a city or airport.");
+        return;
+      }
+
+      const params = new URLSearchParams({ city });
+      if (type) params.append("category", type);
+
+      const url = `${KLOOK_AFF_LINK}?${params.toString()}`;
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
