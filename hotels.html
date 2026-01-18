@@ -3,25 +3,40 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Travel — Hotels</title>
+<title>Travel Search</title>
+
 <style>
   body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
   .tabs { display: flex; background: #f4f4f4; }
-  .tab { padding: 15px 25px; cursor: pointer; border-bottom: 3px solid transparent; }
-  .tab.active { border-color: #0073e6; background: #fff; }
+  .tab {
+    padding: 15px 25px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+  }
+  .tab.active {
+    border-color: #0073e6;
+    background: #fff;
+  }
   .content { padding: 20px; display: none; }
   .content.active { display: block; }
   .search-box { max-width: 500px; margin: auto; }
-  input, button { width: 100%; padding: 10px; margin-top: 10px; }
+  input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+  }
 </style>
 </head>
+
 <body>
 
+<!-- TABS -->
 <div class="tabs">
   <div class="tab active" data-tab="hotels">Hotels</div>
-  <!-- add more tabs here if you like -->
+  <div class="tab" data-tab="activities">Activities</div>
 </div>
 
+<!-- HOTELS -->
 <div id="hotels" class="content active">
   <h2>Search Hotels</h2>
   <div class="search-box">
@@ -32,50 +47,11 @@
   </div>
 </div>
 
-<script>
-// Simple tab switching
-document.querySelectorAll('.tab').forEach(t => {
-  t.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
-    document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-    t.classList.add('active');
-    document.getElementById(t.dataset.tab).classList.add('active');
-  });
-});
-
-// Replace AFF_ID with your affiliate/publisher ID
-const AFF_ID = 'affiliate-alwayson|your_aff_id_here';
-
-function searchHotels() {
-  const dest = encodeURIComponent(document.getElementById('destination').value.trim());
-  const checkin = document.getElementById('checkin').value;
-  const checkout = document.getElementById('checkout').value;
-
-  if (!dest || !checkin || !checkout) {
-    alert('Please fill all fields.');
-    return;
-  }
-
-  // Construct the Klook hotel search URL with affiliate tracking
-  const baseUrl = 'https://www.klook.com/en-US/hotels/'; 
-  const params = new URLSearchParams({
-    q: dest,
-    checkin: checkin,
-    checkout: checkout,
-    aff_pid: AFF_ID
-  });
-
-  const url = `${baseUrl}?${params.toString()}`;
-
-  // Redirect user to Klook hotel results
-  window.open(url, '_blank');
-}
-</script>
-  <div id="activities" class="content">
+<!-- ACTIVITIES -->
+<div id="activities" class="content">
   <h2>Things to Do & Attractions</h2>
-
   <div class="search-box">
-    <input type="text" id="activityCity" placeholder="Enter city (e.g., Bali, Dubai, Singapore)" />
+    <input type="text" id="activityCity" placeholder="Enter city (e.g., Bali)" />
 
     <select id="activityCategory">
       <option value="">All Activities</option>
@@ -94,9 +70,74 @@ function searchHotels() {
   </div>
 </div>
 
-</body>
-</html>
 <script>
+/* ================================
+   GLOBAL SETTINGS
+================================ */
+const AFF_ID = 'affiliate-alwayson|your_aff_id_here';
+
+/* ================================
+   TAB SWITCHING
+================================ */
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+
+/* ================================
+   DEFAULT DATES (HOTELS)
+================================ */
+(function setDefaultDates() {
+  const today = new Date();
+  const checkin = new Date(today);
+  const checkout = new Date(today);
+
+  checkin.setDate(today.getDate() + 2);
+  checkout.setDate(today.getDate() + 5);
+
+  document.getElementById('checkin').value =
+    checkin.toISOString().split('T')[0];
+  document.getElementById('checkout').value =
+    checkout.toISOString().split('T')[0];
+})();
+
+/* ================================
+   HOTEL SEARCH
+================================ */
+function searchHotels() {
+  const destination = document.getElementById('destination').value.trim();
+  const checkin = document.getElementById('checkin').value;
+  const checkout = document.getElementById('checkout').value;
+
+  if (!destination || !checkin || !checkout) {
+    alert('Please fill all fields.');
+    return;
+  }
+
+  if (new Date(checkout) <= new Date(checkin)) {
+    alert('Check-out must be after check-in.');
+    return;
+  }
+
+  const baseUrl = 'https://www.klook.com/en-AU/hotels/';
+  const params = new URLSearchParams({
+    q: destination,
+    check_in: checkin,
+    check_out: checkout,
+    aff_pid: AFF_ID
+  });
+
+  window.open(`${baseUrl}?${params.toString()}`, '_blank');
+}
+
+/* ================================
+   ACTIVITIES SEARCH
+================================ */
 function searchActivities() {
   const city = document.getElementById('activityCity').value.trim();
   const category = document.getElementById('activityCategory').value;
@@ -106,21 +147,17 @@ function searchActivities() {
     return;
   }
 
-  const AFF_ID = 'affiliate-alwayson|your_aff_id_here';
-
-  let baseUrl = 'https://www.klook.com/en-AU/activity/';
-  let params = new URLSearchParams({
-    aff_pid: AFF_ID,
-    city: city
+  const baseUrl = 'https://www.klook.com/en-AU/activity/';
+  const params = new URLSearchParams({
+    city: city,
+    aff_pid: AFF_ID
   });
 
-  if (category) {
-    params.append('category', category);
-  }
+  if (category) params.append('category', category);
 
-  const finalUrl = `${baseUrl}?${params.toString()}`;
-  window.open(finalUrl, '_blank');
+  window.open(`${baseUrl}?${params.toString()}`, '_blank');
 }
 </script>
 
-
+</body>
+</html>
