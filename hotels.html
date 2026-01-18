@@ -454,100 +454,118 @@
 
   </div>
 
-  <script>
-    // ✅ Your Travelpayouts / Klook affiliate short link
-    const KLOOK_AFF_LINK = "https://klook.tpx.lt/1KRa6gs9";
+ <script>
+  // ✅ Your Klook affiliate tracking query string (from your link after "?")
+  const KLOOK_TRACK_QS = "aid=api%7C13694%7C746d10cbddae49fd81619c7a7-697179%7Cpid%7C697179&aff_pid=697179&aff_sid=&aff_adid=1197556&utm_medium=affiliate-alwayson&utm_source=network&utm_campaign=13694&utm_term=697179&utm_content=&aff_klick_id=119980770114-api%7C13694%7C746d10cbddae49fd81619c7a7-697179%7Cpid%7C697179-1197556-7a80ee8";
 
-    // ✅ Tabs
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        const targetId = tab.dataset.tab;
-        const target = document.getElementById(targetId);
-        if (!target) return;
+  // ✅ Tabs switching
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.dataset.tab;
+      const target = document.getElementById(targetId);
+      if (!target) return;
 
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
 
-        tab.classList.add('active');
-        target.classList.add('active');
-      });
+      tab.classList.add('active');
+      target.classList.add('active');
+    });
+  });
+
+  // ✅ Default dates
+  (function setDefaultDates() {
+    const today = new Date();
+    const checkinDate = new Date(today);
+    const checkoutDate = new Date(today);
+
+    checkinDate.setDate(today.getDate() + 2);
+    checkoutDate.setDate(today.getDate() + 5);
+
+    const ci = document.getElementById('checkin');
+    const co = document.getElementById('checkout');
+
+    if (ci && co) {
+      ci.value = checkinDate.toISOString().split('T')[0];
+      co.value = checkoutDate.toISOString().split('T')[0];
+    }
+  })();
+
+  // ✅ Helper: open a tracked Klook URL
+  function openTrackedKlook(baseUrl, extraParams) {
+    const url = `${baseUrl}?${KLOOK_TRACK_QS}&${extraParams.toString()}`;
+    window.open(url, "_blank");
+  }
+
+  // ✅ FORCE GLOBAL FUNCTIONS (chips + inline onclick will work 100%)
+  window.quickHotel = function(city) {
+    document.getElementById('destination').value = city;
+    window.searchHotels();
+  };
+
+  // ✅ HOTELS SEARCH (tracked)
+  window.searchHotels = function() {
+    const destination = document.getElementById('destination').value.trim();
+    const checkin = document.getElementById('checkin').value;
+    const checkout = document.getElementById('checkout').value;
+
+    if (!destination || !checkin || !checkout) {
+      alert("Please enter destination and dates.");
+      return;
+    }
+    if (new Date(checkout) <= new Date(checkin)) {
+      alert("Check-out must be after check-in.");
+      return;
+    }
+
+    const baseUrl = "https://www.klook.com/en-AU/hotels/";
+    const params = new URLSearchParams({
+      q: destination,
+      check_in: checkin,
+      check_out: checkout
     });
 
-    // ✅ Default dates
-    (function setDefaultDates() {
-      const today = new Date();
-      const checkinDate = new Date(today);
-      const checkoutDate = new Date(today);
+    openTrackedKlook(baseUrl, params);
+  };
 
-      checkinDate.setDate(today.getDate() + 2);
-      checkoutDate.setDate(today.getDate() + 5);
+  // ✅ ACTIVITIES SEARCH (tracked)
+  window.searchActivities = function() {
+    const city = document.getElementById('activityCity').value.trim();
+    const category = document.getElementById('activityCategory').value;
 
-      document.getElementById('checkin').value = checkinDate.toISOString().split('T')[0];
-      document.getElementById('checkout').value = checkoutDate.toISOString().split('T')[0];
-    })();
-
-    // ✅ FORCE FUNCTIONS GLOBAL (FIXES CHIPS 100%)
-    window.quickHotel = function(city) {
-      document.getElementById('destination').value = city;
-      window.searchHotels();
+    if (!city) {
+      alert("Please enter a city.");
+      return;
     }
 
-    window.searchHotels = function() {
-      const destination = document.getElementById('destination').value.trim();
-      const checkin = document.getElementById('checkin').value;
-      const checkout = document.getElementById('checkout').value;
+    const baseUrl = "https://www.klook.com/en-AU/activity/";
+    const params = new URLSearchParams({
+      city: city
+    });
 
-      if (!destination || !checkin || !checkout) {
-        alert("Please enter destination and dates.");
-        return;
-      }
-      if (new Date(checkout) <= new Date(checkin)) {
-        alert("Check-out must be after check-in.");
-        return;
-      }
+    if (category) params.append("category", category);
 
-      const params = new URLSearchParams({
-        q: destination,
-        check_in: checkin,
-        check_out: checkout
-      });
+    openTrackedKlook(baseUrl, params);
+  };
 
-      const url = `${KLOOK_AFF_LINK}?${params.toString()}`;
-      window.open(url, "_blank");
+  // ✅ TRANSPORT SEARCH (tracked)
+  window.searchTransport = function() {
+    const city = document.getElementById('transportCity').value.trim();
+    const type = document.getElementById('transportType').value;
+
+    if (!city) {
+      alert("Please enter a city or airport.");
+      return;
     }
 
-    window.searchActivities = function() {
-      const city = document.getElementById('activityCity').value.trim();
-      const category = document.getElementById('activityCategory').value;
+    const baseUrl = "https://www.klook.com/en-AU/transport/";
+    const params = new URLSearchParams({
+      city: city
+    });
 
-      if (!city) {
-        alert("Please enter a city.");
-        return;
-      }
+    if (type) params.append("category", type);
 
-      const params = new URLSearchParams({ city });
-      if (category) params.append("category", category);
+    openTrackedKlook(baseUrl, params);
+  };
+</script>
 
-      const url = `${KLOOK_AFF_LINK}?${params.toString()}`;
-      window.open(url, "_blank");
-    }
-
-    window.searchTransport = function() {
-      const city = document.getElementById('transportCity').value.trim();
-      const type = document.getElementById('transportType').value;
-
-      if (!city) {
-        alert("Please enter a city or airport.");
-        return;
-      }
-
-      const params = new URLSearchParams({ city });
-      if (type) params.append("category", type);
-
-      const url = `${KLOOK_AFF_LINK}?${params.toString()}`;
-      window.open(url, "_blank");
-    }
-  </script>
-
-</body>
-</html>
