@@ -1,204 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Travel Search</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Search</title>
 
-<style>
-  body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-  .tabs { display: flex; background: #f4f4f4; }
-  .tab {
-    padding: 15px 25px;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-  }
-  .tab.active {
-    border-color: #0073e6;
-    background: #fff;
-  }
-  .content { padding: 20px; display: none; }
-  .content.active { display: block; }
-  .search-box { max-width: 500px; margin: auto; }
-  input, select, button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-  }
-</style>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .tabs { display: flex; background: #f4f4f4; }
+    .tab { padding: 15px 25px; cursor: pointer; border-bottom: 3px solid transparent; }
+    .tab.active { border-color: #0073e6; background: #fff; }
+    .content { padding: 20px; display: none; }
+    .content.active { display: block; }
+    .search-box { max-width: 500px; margin: auto; }
+    input, select, button { width: 100%; padding: 10px; margin-top: 10px; }
+  </style>
 </head>
 
 <body>
 
-<!-- TABS -->
-<div class="tabs">
-  <div class="tab active" data-tab="hotels">Hotels</div>
-  <div class="tab" data-tab="activities">Activities</div>
-  <div class="tab" data-tab="transport">Transport</div>
-</div>
-
-<!-- HOTELS -->
-<div id="hotels" class="content active">
-  <h2>Search Hotels</h2>
-  <div class="search-box">
-    <input type="text" id="destination" placeholder="Enter destination (e.g., Tokyo)" />
-    <input type="date" id="checkin" />
-    <input type="date" id="checkout" />
-    <button onclick="searchHotels()">Search Deals</button>
+  <!-- ✅ TABS -->
+  <div class="tabs">
+    <div class="tab active" data-tab="hotels">Hotels</div>
+    <div class="tab" data-tab="activities">Activities</div>
+    <div class="tab" data-tab="transport">Transport</div>
   </div>
-</div>
 
-<!-- ACTIVITIES -->
-<div id="activities" class="content">
+  <!-- ✅ HOTELS -->
+  <div id="hotels" class="content active">
+    <h2>Search Hotels</h2>
+    <div class="search-box">
+      <input type="text" id="destination" placeholder="Enter destination (e.g., Tokyo)" />
+      <input type="date" id="checkin" />
+      <input type="date" id="checkout" />
+      <button onclick="searchHotels()">Search Deals</button>
+    </div>
+  </div>
+
+  <!-- ✅ ACTIVITIES -->
+  <div id="activities" class="content">
+    <h2>Things to Do & Attractions</h2>
+    <div class="search-box">
+      <input type="text" id="activityCity" placeholder="Enter city (e.g., Bali, Dubai, Singapore)" />
+
+      <select id="activityCategory">
+        <option value="">All Activities</option>
+        <option value="attractions">Attractions</option>
+        <option value="tours">Tours</option>
+        <option value="transport">Transport</option>
+        <option value="theme-parks">Theme Parks</option>
+        <option value="day-trips">Day Trips</option>
+      </select>
+
+      <button onclick="searchActivities()">Explore Activities</button>
+
+      <p style="text-align:center;font-size:14px;color:#666;margin-top:10px;">
+        ⭐ Book top-rated tours & experiences — instant confirmation
+      </p>
+    </div>
+  </div>
+
+  <!-- ✅ TRANSPORT (THIS WAS MISSING OR OUTSIDE BODY BEFORE) -->
   <div id="transport" class="content">
-  <h2>Airport Transfers, SIM Cards & Transport</h2>
+    <h2>Airport Transfers, SIM Cards & Transport</h2>
 
-  <div class="search-box">
-    <input type="text" id="transportCity" placeholder="Enter city or airport (e.g., Bangkok, Dubai Airport)" />
+    <div class="search-box">
+      <input type="text" id="transportCity" placeholder="Enter city or airport (e.g., Bangkok, Dubai Airport)" />
 
-    <select id="transportType">
-      <option value="">All Transport</option>
-      <option value="airport-transfers">Airport Transfers</option>
-      <option value="sim-cards">SIM Cards & eSIMs</option>
-      <option value="trains">Trains & Rail Passes</option>
-      <option value="car-rentals">Car Rentals</option>
-    </select>
+      <select id="transportType">
+        <option value="">All Transport</option>
+        <option value="airport-transfers">Airport Transfers</option>
+        <option value="sim-cards">SIM Cards & eSIMs</option>
+        <option value="trains">Trains & Rail Passes</option>
+        <option value="car-rentals">Car Rentals</option>
+      </select>
 
-    <button onclick="searchTransport()">Find Transport</button>
+      <button onclick="searchTransport()">Find Transport</button>
+
+      <p style="text-align:center;font-size:14px;color:#666;margin-top:10px;">
+        🚕 Reliable transfers • 📶 Instant SIMs • 🚆 Easy travel
+      </p>
+    </div>
   </div>
-</div>
 
-  <h2>Things to Do & Attractions</h2>
-  <div class="search-box">
-    <input type="text" id="activityCity" placeholder="Enter city (e.g., Bali)" />
+  <!-- ✅ SCRIPT MUST STAY HERE (INSIDE BODY, BEFORE </body>) -->
+  <script>
+    // ✅ Affiliate ID (replace with your real one)
+    const AFF_ID = 'affiliate-alwayson|your_aff_id_here';
 
-    <select id="activityCategory">
-      <option value="">All Activities</option>
-      <option value="attractions">Attractions</option>
-      <option value="tours">Tours</option>
-      <option value="transport">Transport</option>
-      <option value="theme-parks">Theme Parks</option>
-      <option value="day-trips">Day Trips</option>
-    </select>
+    // ✅ Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
 
-    <button onclick="searchActivities()">Explore Activities</button>
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
 
-    <p style="text-align:center;font-size:14px;color:#666;margin-top:10px;">
-      ⭐ Book top-rated tours & experiences — instant confirmation
-    </p>
-  </div>
-</div>
+    // ✅ Default dates for Hotels (today+2 to today+5)
+    (function setDefaultDates() {
+      const today = new Date();
+      const checkinDate = new Date(today);
+      const checkoutDate = new Date(today);
 
-<script>
-/* ================================
-   GLOBAL SETTINGS
-================================ */
-const AFF_ID = 'affiliate-alwayson|your_aff_id_here';
+      checkinDate.setDate(today.getDate() + 2);
+      checkoutDate.setDate(today.getDate() + 5);
 
-/* ================================
-   TAB SWITCHING
-================================ */
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+      document.getElementById('checkin').value = checkinDate.toISOString().split('T')[0];
+      document.getElementById('checkout').value = checkoutDate.toISOString().split('T')[0];
+    })();
 
-    tab.classList.add('active');
-    document.getElementById(tab.dataset.tab).classList.add('active');
-  });
-});
+    // ✅ Hotels search
+    function searchHotels() {
+      const destination = document.getElementById('destination').value.trim();
+      const checkin = document.getElementById('checkin').value;
+      const checkout = document.getElementById('checkout').value;
 
-/* ================================
-   DEFAULT DATES (HOTELS)
-================================ */
-(function setDefaultDates() {
-  const today = new Date();
-  const checkin = new Date(today);
-  const checkout = new Date(today);
+      if (!destination || !checkin || !checkout) {
+        alert('Please fill all fields.');
+        return;
+      }
 
-  checkin.setDate(today.getDate() + 2);
-  checkout.setDate(today.getDate() + 5);
+      if (new Date(checkout) <= new Date(checkin)) {
+        alert('Check-out must be after check-in.');
+        return;
+      }
 
-  document.getElementById('checkin').value =
-    checkin.toISOString().split('T')[0];
-  document.getElementById('checkout').value =
-    checkout.toISOString().split('T')[0];
-})();
+      const baseUrl = 'https://www.klook.com/en-AU/hotels/';
+      const params = new URLSearchParams({
+        q: destination,
+        check_in: checkin,
+        check_out: checkout,
+        aff_pid: AFF_ID
+      });
 
-/* ================================
-   HOTEL SEARCH
-================================ */
-function searchHotels() {
-  const destination = document.getElementById('destination').value.trim();
-  const checkin = document.getElementById('checkin').value;
-  const checkout = document.getElementById('checkout').value;
+      window.open(`${baseUrl}?${params.toString()}`, '_blank');
+    }
 
-  if (!destination || !checkin || !checkout) {
-    alert('Please fill all fields.');
-    return;
-  }
+    // ✅ Activities search
+    function searchActivities() {
+      const city = document.getElementById('activityCity').value.trim();
+      const category = document.getElementById('activityCategory').value;
 
-  if (new Date(checkout) <= new Date(checkin)) {
-    alert('Check-out must be after check-in.');
-    return;
-  }
+      if (!city) {
+        alert('Please enter a city.');
+        return;
+      }
 
-  const baseUrl = 'https://www.klook.com/en-AU/hotels/';
-  const params = new URLSearchParams({
-    q: destination,
-    check_in: checkin,
-    check_out: checkout,
-    aff_pid: AFF_ID
-  });
+      const baseUrl = 'https://www.klook.com/en-AU/activity/';
+      const params = new URLSearchParams({
+        city: city,
+        aff_pid: AFF_ID
+      });
 
-  window.open(`${baseUrl}?${params.toString()}`, '_blank');
-}
+      if (category) params.append('category', category);
 
-/* ================================
-   ACTIVITIES SEARCH
-================================ */
-function searchActivities() {function searchTransport() {
-  const city = document.getElementById('transportCity').value.trim();
-  const type = document.getElementById('transportType').value;
+      window.open(`${baseUrl}?${params.toString()}`, '_blank');
+    }
 
-  if (!city) {
-    alert('Please enter a city or airport.');
-    return;
-  }
+    // ✅ Transport search
+    function searchTransport() {
+      const city = document.getElementById('transportCity').value.trim();
+      const type = document.getElementById('transportType').value;
 
-  const baseUrl = 'https://www.klook.com/en-AU/transport/';
-  const params = new URLSearchParams({
-    city: city,
-    aff_pid: AFF_ID
-  });
+      if (!city) {
+        alert('Please enter a city or airport.');
+        return;
+      }
 
-  if (type) params.append('category', type);
+      const baseUrl = 'https://www.klook.com/en-AU/transport/';
+      const params = new URLSearchParams({
+        city: city,
+        aff_pid: AFF_ID
+      });
 
-  window.open(`${baseUrl}?${params.toString()}`, '_blank');
-}
+      if (type) params.append('category', type);
 
-  const city = document.getElementById('activityCity').value.trim();
-  const category = document.getElementById('activityCategory').value;
-
-  if (!city) {
-    alert('Please enter a city.');
-    return;
-  }
-
-  const baseUrl = 'https://www.klook.com/en-AU/activity/';
-  const params = new URLSearchParams({
-    city: city,
-    aff_pid: AFF_ID
-  });
-
-  if (category) params.append('category', category);
-
-  window.open(`${baseUrl}?${params.toString()}`, '_blank');
-}
-</script>
+      window.open(`${baseUrl}?${params.toString()}`, '_blank');
+    }
+  </script>
 
 </body>
 </html>
-
-
-
