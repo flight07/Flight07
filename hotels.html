@@ -157,7 +157,26 @@ function searchHotels() {
 /* ================================
    ACTIVITIES SEARCH
 ================================ */
-function searchActivities() {
+function searchActivities() {function searchTransport() {
+  const city = document.getElementById('transportCity').value.trim();
+  const type = document.getElementById('transportType').value;
+
+  if (!city) {
+    alert('Please enter a city or airport.');
+    return;
+  }
+
+  const baseUrl = 'https://www.klook.com/en-AU/transport/';
+  const params = new URLSearchParams({
+    city: city,
+    aff_pid: AFF_ID
+  });
+
+  if (type) params.append('category', type);
+
+  window.open(`${baseUrl}?${params.toString()}`, '_blank');
+}
+
   const city = document.getElementById('activityCity').value.trim();
   const category = document.getElementById('activityCategory').value;
 
@@ -180,5 +199,6 @@ function searchActivities() {
 
 </body>
 </html>
+
 
 
