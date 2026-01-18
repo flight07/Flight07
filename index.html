@@ -1,60 +1,63 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flight07 — Compare Flights, Hotels & Insurance</title>
+  <meta charset="UTF-8">
+  <title>Flight07 – Compare Flights & Hotels</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS (ROOT LEVEL – GitHub Pages SAFE) -->
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header class="top">
-  <div class="wrap">
-    <a class="logo" href="index.html">Flight07</a>
-    <nav class="nav">
-      <a href="tools.html">Tools</a>
-      <a href="flights.html">Flights</a>
+<header class="header">
+  <div class="container">
+    <h1 class="logo">Flight07</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="flight.html">Flights</a>
       <a href="hotels.html">Hotels</a>
       <a href="blog.html">Blog</a>
+      <a href="tools.html">Tools</a>
       <a href="contact.html">Contact</a>
     </nav>
   </div>
 </header>
 
-<main class="wrap">
-  <section class="hero">
-    <h1>Find smarter travel deals in one place</h1>
-    <p>Compare flights, hotels, and travel insurance. Simple, fast, family-friendly.</p>
+<section class="hero">
+  <div class="container">
+    <h2>Find Cheap Flights & Hotels Worldwide</h2>
+    <p>Compare prices from top travel sites. No hidden fees.</p>
+    <a class="btn" href="flight.html">Search Flights</a>
+  </div>
+</section>
 
-    <div class="buttons">
-      <a class="btn" href="tools.html">Start Here (Tools)</a>
-      <a class="btn ghost" href="blog.html">Travel Tips</a>
+<section class="features">
+  <div class="container grid">
+    <div class="card">
+      <h3>✈️ Flights</h3>
+      <p>Compare airlines and save on airfare.</p>
     </div>
-  </section>
+    <div class="card">
+      <h3>🏨 Hotels</h3>
+      <p>Find the best hotel deals worldwide.</p>
+    </div>
+    <div class="card">
+      <h3>🛠 Tools</h3>
+      <p>Travel tools, tips, and calculators.</p>
+    </div>
+  </div>
+</section>
 
-  <section class="cards">
-    <a class="card" href="flights.html">
-      <h3>Flights</h3>
-      <p>Compare routes and airline tips.</p>
-    </a>
-
-    <a class="card" href="hotels.html">
-      <h3>Hotels</h3>
-      <p>Find budget and family-friendly stays.</p>
-    </a>
-
-    <a class="card" href="insurance.html">
-      <h3>Travel Insurance</h3>
-      <p>Protect your trip in minutes.</p>
-    </a>
-  </section>
-</main>
-
-<footer class="wrap foot">
-  <a href="privacy.html">Privacy Policy</a> ·
-  <a href="disclaimer.html">Disclaimer</a>
-  <p>© Flight07</p>
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 Flight07. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
 </footer>
 
 </body>
