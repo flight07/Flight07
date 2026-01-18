@@ -50,6 +50,24 @@
 
 <!-- ACTIVITIES -->
 <div id="activities" class="content">
+  <div id="transport" class="content">
+  <h2>Airport Transfers, SIM Cards & Transport</h2>
+
+  <div class="search-box">
+    <input type="text" id="transportCity" placeholder="Enter city or airport (e.g., Bangkok, Dubai Airport)" />
+
+    <select id="transportType">
+      <option value="">All Transport</option>
+      <option value="airport-transfers">Airport Transfers</option>
+      <option value="sim-cards">SIM Cards & eSIMs</option>
+      <option value="trains">Trains & Rail Passes</option>
+      <option value="car-rentals">Car Rentals</option>
+    </select>
+
+    <button onclick="searchTransport()">Find Transport</button>
+  </div>
+</div>
+
   <h2>Things to Do & Attractions</h2>
   <div class="search-box">
     <input type="text" id="activityCity" placeholder="Enter city (e.g., Bali)" />
@@ -162,4 +180,5 @@ function searchActivities() {
 
 </body>
 </html>
+
 
