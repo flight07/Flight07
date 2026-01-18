@@ -493,19 +493,31 @@
     }
 
     // ✅ Hotels search
-    function searchHotels(){
-      const destination = document.getElementById('destination').value.trim();
-      const checkin = document.getElementById('checkin').value;
-      const checkout = document.getElementById('checkout').value;
+   function searchHotels(){
+  const destination = document.getElementById('destination').value.trim();
+  const checkin = document.getElementById('checkin').value;
+  const checkout = document.getElementById('checkout').value;
 
-      if(!destination || !checkin || !checkout){
-        alert("Please enter destination and dates.");
-        return;
-      }
-      if(new Date(checkout) <= new Date(checkin)){
-        alert("Check-out must be after check-in.");
-        return;
-      }
+  if(!destination || !checkin || !checkout){
+    alert("Please enter destination and dates.");
+    return;
+  }
+  if(new Date(checkout) <= new Date(checkin)){
+    alert("Check-out must be after check-in.");
+    return;
+  }
+
+  // ✅ Klook hotel search parameters
+  const params = new URLSearchParams({
+    q: destination,
+    check_in: checkin,
+    check_out: checkout
+  });
+
+  // ✅ Send user through YOUR Travelpayouts short link
+  const url = `${KLOOK_AFF_LINK}?${params.toString()}`;
+  window.open(url, "_blank");
+}
 
       const baseUrl = "https://www.klook.com/en-AU/hotels/";
       const params = new URLSearchParams({
@@ -562,3 +574,4 @@
   </script>
 </body>
 </html>
+
