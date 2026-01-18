@@ -96,4 +96,31 @@ function searchHotels() {
 
 </body>
 </html>
+<script>
+function searchActivities() {
+  const city = document.getElementById('activityCity').value.trim();
+  const category = document.getElementById('activityCategory').value;
+
+  if (!city) {
+    alert('Please enter a city.');
+    return;
+  }
+
+  const AFF_ID = 'affiliate-alwayson|your_aff_id_here';
+
+  let baseUrl = 'https://www.klook.com/en-AU/activity/';
+  let params = new URLSearchParams({
+    aff_pid: AFF_ID,
+    city: city
+  });
+
+  if (category) {
+    params.append('category', category);
+  }
+
+  const finalUrl = `${baseUrl}?${params.toString()}`;
+  window.open(finalUrl, '_blank');
+}
+</script>
+
 
