@@ -2,44 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Travel Search</title>
 
   <style>
     :root{
-      --bg:#f5f7fb;
+      --bg:#f4f6fb;
       --card:#ffffff;
-      --text:#111827;
-      --muted:#6b7280;
+      --text:#0f172a;
+      --muted:#64748b;
       --brand:#2563eb;
-      --brand2:#1d4ed8;
+      --brandDark:#1d4ed8;
       --border:#e5e7eb;
-      --shadow: 0 10px 25px rgba(0,0,0,.08);
-      --radius:16px;
+      --shadow:0 12px 30px rgba(15,23,42,.10);
+      --radius:18px;
     }
 
-    * { box-sizing: border-box; }
+    *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       background: var(--bg);
       color: var(--text);
     }
 
-    /* ===== HEADER ===== */
+    /* ===== TOP NAV ===== */
     .topbar{
       position: sticky;
       top: 0;
       z-index: 999;
-      background: rgba(255,255,255,.9);
+      background: rgba(255,255,255,.92);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
 
     .topbar-inner{
-      max-width: 1050px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 14px 16px;
+      padding: 12px 16px;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -49,68 +49,70 @@
     .brand{
       display:flex;
       align-items:center;
-      gap:10px;
-      font-weight: 800;
+      gap: 10px;
+      font-weight: 900;
       letter-spacing: .2px;
     }
 
     .logo{
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--brand), #7c3aed);
-      box-shadow: 0 8px 18px rgba(37,99,235,.25);
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      box-shadow: 0 10px 18px rgba(37,99,235,.25);
     }
 
     .brand small{
       display:block;
-      font-weight:600;
       color: var(--muted);
-      letter-spacing: 0;
-      margin-top: 2px;
+      font-weight: 700;
       font-size: 12px;
+      margin-top: 2px;
+      letter-spacing: 0;
     }
 
-    .nav{
+    .nav-actions{
       display:flex;
-      gap:10px;
       align-items:center;
+      gap: 10px;
     }
 
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:8px;
       padding: 10px 14px;
       border-radius: 12px;
       border: 1px solid var(--border);
       background: #fff;
       color: var(--text);
+      font-weight: 800;
       text-decoration:none;
       cursor:pointer;
-      font-weight: 700;
-      transition: .2s ease;
+      transition: .18s ease;
       box-shadow: 0 1px 0 rgba(0,0,0,.03);
     }
-    .btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 18px rgba(0,0,0,.08); }
+
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(0,0,0,.08);
+    }
 
     .btn.primary{
       background: var(--brand);
       border-color: transparent;
-      color: #fff;
+      color:#fff;
     }
-    .btn.primary:hover{
-      background: var(--brand2);
-    }
+    .btn.primary:hover{ background: var(--brandDark); }
 
-    /* ===== LAYOUT ===== */
+    /* ===== PAGE WRAP ===== */
     .wrap{
-      max-width: 1050px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 18px 16px 60px;
     }
 
+    /* ===== HERO ===== */
     .hero{
       background: linear-gradient(135deg, #ffffff, #eef2ff);
       border: 1px solid var(--border);
@@ -118,15 +120,12 @@
       box-shadow: var(--shadow);
       padding: 26px 20px;
       margin-top: 18px;
-      overflow:hidden;
-      position:relative;
     }
 
     .hero h1{
       margin:0;
       font-size: 30px;
-      line-height: 1.2;
-      letter-spacing: -.4px;
+      letter-spacing: -0.4px;
     }
 
     .hero p{
@@ -138,26 +137,26 @@
     }
 
     .badge-row{
-      margin-top: 14px;
       display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 14px;
     }
     .badge{
-      font-size: 12px;
-      color: #111827;
-      background: rgba(37,99,235,.08);
-      border: 1px solid rgba(37,99,235,.12);
+      font-size:12px;
+      font-weight: 800;
       padding: 7px 10px;
       border-radius: 999px;
-      font-weight: 700;
+      background: rgba(37,99,235,.08);
+      border: 1px solid rgba(37,99,235,.14);
+      color: var(--text);
     }
 
     /* ===== TABS ===== */
     .tabs{
       display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      gap:10px;
+      flex-wrap:wrap;
       margin-top: 16px;
     }
 
@@ -165,47 +164,52 @@
       padding: 10px 14px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: #fff;
+      background:#fff;
       cursor:pointer;
-      font-weight: 800;
-      color: #111827;
-      transition: .2s ease;
+      font-weight: 900;
+      transition: .18s ease;
       user-select:none;
     }
+
     .tab:hover{
       transform: translateY(-1px);
-      box-shadow: 0 10px 16px rgba(0,0,0,.08);
+      box-shadow: 0 10px 18px rgba(0,0,0,.08);
     }
+
     .tab.active{
       background: var(--brand);
-      color: #fff;
+      color:#fff;
       border-color: transparent;
     }
 
-    /* ===== CONTENT CARDS ===== */
+    /* ===== CARD ===== */
     .card{
+      display:none;
       margin-top: 16px;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 18px;
-      display:none;
     }
     .card.active{ display:block; }
 
     .card h2{
-      margin: 0 0 6px;
+      margin:0;
       font-size: 20px;
-      letter-spacing: -.2px;
+      letter-spacing: -0.2px;
     }
+
     .card .sub{
-      margin:0 0 14px;
+      margin: 6px 0 14px;
       color: var(--muted);
       font-size: 13px;
     }
 
-    .grid{
+    /* ===== FORM LAYOUT: SAME SIZE EVERYWHERE ===== */
+    .form{
+      max-width: 720px;     /* ✅ makes all inputs same width */
+      margin: 0 auto;       /* ✅ centers the form */
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
@@ -214,74 +218,92 @@
     .field{
       display:flex;
       flex-direction:column;
-      gap:6px;
+      gap: 6px;
     }
+
     .label{
-      font-size: 12px;
+      font-size:12px;
       color: var(--muted);
-      font-weight: 700;
+      font-weight: 800;
     }
 
     input, select{
-      width:100%;
+      width: 100%;
       padding: 12px 12px;
       border-radius: 12px;
       border: 1px solid var(--border);
-      outline:none;
+      outline: none;
       font-size: 14px;
-      background:#fff;
+      background: #fff;
     }
+
     input:focus, select:focus{
-      border-color: rgba(37,99,235,.6);
+      border-color: rgba(37,99,235,.65);
       box-shadow: 0 0 0 4px rgba(37,99,235,.12);
     }
 
-    .actions{
+    .full{
+      grid-column: 1 / -1;
+    }
+
+    .cta{
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: none;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 900;
+      cursor:pointer;
+      transition: .18s ease;
+    }
+    .cta:hover{
+      background: var(--brandDark);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(37,99,235,.25);
+    }
+
+    .quick{
+      max-width: 720px;
+      margin: 12px auto 0;
       display:flex;
       gap: 10px;
-      margin-top: 12px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .hint{
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    /* Quick buttons */
-    .quick{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top: 10px;
-    }
     .chip{
-      border: 1px solid var(--border);
-      background:#fff;
       padding: 9px 12px;
       border-radius: 999px;
+      border: 1px solid var(--border);
+      background:#fff;
+      font-weight: 900;
       cursor:pointer;
-      font-weight: 800;
-      transition: .2s ease;
+      transition: .18s ease;
     }
     .chip:hover{
       transform: translateY(-1px);
-      box-shadow: 0 10px 16px rgba(0,0,0,.08);
+      box-shadow: 0 10px 18px rgba(0,0,0,.08);
     }
 
-    /* Footer */
-    .footer{
-      margin-top: 22px;
+    .note{
+      max-width: 720px;
+      margin: 10px auto 0;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 13px;
       text-align:center;
+      line-height:1.5;
     }
 
-    /* Responsive */
-    @media (max-width: 720px){
-      .grid{ grid-template-columns: 1fr; }
+    .footer{
+      margin-top: 20px;
+      text-align:center;
+      font-size:12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 760px){
+      .form{ grid-template-columns: 1fr; }
       .hero h1{ font-size: 24px; }
     }
   </style>
@@ -289,7 +311,7 @@
 
 <body>
 
-  <!-- ✅ HEADER + HOME BUTTON -->
+  <!-- ✅ TOP NAV WITH HOME BUTTON -->
   <div class="topbar">
     <div class="topbar-inner">
       <div class="brand">
@@ -300,8 +322,8 @@
         </div>
       </div>
 
-      <div class="nav">
-        <!-- ✅ Home Button (change href if your homepage file is different) -->
+      <div class="nav-actions">
+        <!-- ✅ HOME BUTTON (CHANGE PATH IF NEEDED) -->
         <a class="btn" href="./index.html">🏠 Home</a>
         <a class="btn primary" href="#search">🔎 Search</a>
       </div>
@@ -313,14 +335,12 @@
     <!-- ✅ HERO -->
     <div class="hero">
       <h1>Find the Best Travel Deals</h1>
-      <p>
-        Search hotels, book top experiences, and find transport deals — all in one clean place.
-      </p>
+      <p>Search hotels, explore top attractions, and book transport deals — clean, fast and mobile friendly.</p>
 
       <div class="badge-row">
         <div class="badge">✅ Fast Search</div>
         <div class="badge">✅ Mobile Friendly</div>
-        <div class="badge">✅ Best Affiliate Conversions</div>
+        <div class="badge">✅ High Converting</div>
       </div>
     </div>
 
@@ -331,13 +351,13 @@
       <div class="tab" data-tab="transport">🚕 Transport</div>
     </div>
 
-    <!-- ✅ HOTELS CARD -->
+    <!-- ✅ HOTELS -->
     <div id="hotels" class="card active">
       <h2>Hotels</h2>
-      <p class="sub">Find the best deals in seconds.</p>
+      <div class="sub">Find the best deals in seconds.</div>
 
-      <div class="grid">
-        <div class="field">
+      <div class="form">
+        <div class="field full">
           <div class="label">Destination</div>
           <input type="text" id="destination" placeholder="e.g., Singapore, Dubai, Bali" />
         </div>
@@ -352,14 +372,11 @@
           <input type="date" id="checkout" />
         </div>
 
-        <div class="field">
-          <div class="label">Action</div>
-          <button class="btn primary" onclick="searchHotels()">Search Deals →</button>
+        <div class="field full">
+          <button class="cta" onclick="searchHotels()">Search Hotels →</button>
         </div>
       </div>
 
-      <!-- ✅ Quick Searches -->
-      <div class="hint">Popular searches:</div>
       <div class="quick">
         <div class="chip" onclick="quickHotel('Dubai')">Dubai</div>
         <div class="chip" onclick="quickHotel('Bali')">Bali</div>
@@ -368,21 +385,21 @@
         <div class="chip" onclick="quickHotel('Delhi')">Delhi</div>
       </div>
 
-      <div class="hint">🔥 Tip: choosing popular locations increases booking chances.</div>
+      <div class="note">Tip: Popular cities get more bookings and higher commissions.</div>
     </div>
 
-    <!-- ✅ ACTIVITIES CARD -->
+    <!-- ✅ ACTIVITIES -->
     <div id="activities" class="card">
       <h2>Activities</h2>
-      <p class="sub">Tours, attractions, theme parks and day trips.</p>
+      <div class="sub">Tours, attractions, theme parks and day trips.</div>
 
-      <div class="grid">
-        <div class="field">
+      <div class="form">
+        <div class="field full">
           <div class="label">City</div>
           <input type="text" id="activityCity" placeholder="e.g., Tokyo, Bali, Bangkok" />
         </div>
 
-        <div class="field">
+        <div class="field full">
           <div class="label">Category</div>
           <select id="activityCategory">
             <option value="">All Activities</option>
@@ -393,27 +410,26 @@
           </select>
         </div>
 
-        <div class="field">
-          <div class="label">Action</div>
-          <button class="btn primary" onclick="searchActivities()">Explore Activities →</button>
+        <div class="field full">
+          <button class="cta" onclick="searchActivities()">Explore Activities →</button>
         </div>
       </div>
 
-      <div class="hint">⭐ Highest converting category on Klook.</div>
+      <div class="note">⭐ Activities are the highest converting category on Klook.</div>
     </div>
 
-    <!-- ✅ TRANSPORT CARD -->
+    <!-- ✅ TRANSPORT -->
     <div id="transport" class="card">
       <h2>Transport</h2>
-      <p class="sub">Airport transfers, SIM/eSIM, trains & more.</p>
+      <div class="sub">Airport transfers, SIM/eSIM, trains & more.</div>
 
-      <div class="grid">
-        <div class="field">
+      <div class="form">
+        <div class="field full">
           <div class="label">City / Airport</div>
           <input type="text" id="transportCity" placeholder="e.g., Singapore Airport, Dubai Airport" />
         </div>
 
-        <div class="field">
+        <div class="field full">
           <div class="label">Type</div>
           <select id="transportType">
             <option value="">All Transport</option>
@@ -424,13 +440,12 @@
           </select>
         </div>
 
-        <div class="field">
-          <div class="label">Action</div>
-          <button class="btn primary" onclick="searchTransport()">Find Transport →</button>
+        <div class="field full">
+          <button class="cta" onclick="searchTransport()">Find Transport →</button>
         </div>
       </div>
 
-      <div class="hint">🚀 Transport searches have the highest intent (best conversions).</div>
+      <div class="note">🚀 Transport searches have the highest buying intent (best conversions).</div>
     </div>
 
     <div class="footer">
@@ -440,15 +455,14 @@
   </div>
 
   <script>
-    // ✅ Affiliate ID (replace with your real one)
+    // ✅ Put your real affiliate id here
     const AFF_ID = 'affiliate-alwayson|your_aff_id_here';
 
-    // ✅ Tab switching (safe)
+    // ✅ Tabs
     document.querySelectorAll('.tab').forEach(tab => {
       tab.addEventListener('click', () => {
         const targetId = tab.dataset.tab;
         const target = document.getElementById(targetId);
-
         if (!target) return;
 
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -459,7 +473,7 @@
       });
     });
 
-    // ✅ Default dates for Hotels (today+2 to today+5)
+    // ✅ Default dates for Hotels
     (function setDefaultDates() {
       const today = new Date();
       const checkinDate = new Date(today);
@@ -472,29 +486,28 @@
       document.getElementById('checkout').value = checkoutDate.toISOString().split('T')[0];
     })();
 
-    // ✅ Quick hotel search chips
-    function quickHotel(city) {
+    // ✅ Quick chips
+    function quickHotel(city){
       document.getElementById('destination').value = city;
       searchHotels();
     }
 
     // ✅ Hotels search
-    function searchHotels() {
+    function searchHotels(){
       const destination = document.getElementById('destination').value.trim();
       const checkin = document.getElementById('checkin').value;
       const checkout = document.getElementById('checkout').value;
 
-      if (!destination || !checkin || !checkout) {
-        alert('Please fill all fields.');
+      if(!destination || !checkin || !checkout){
+        alert("Please enter destination and dates.");
+        return;
+      }
+      if(new Date(checkout) <= new Date(checkin)){
+        alert("Check-out must be after check-in.");
         return;
       }
 
-      if (new Date(checkout) <= new Date(checkin)) {
-        alert('Check-out must be after check-in.');
-        return;
-      }
-
-      const baseUrl = 'https://www.klook.com/en-AU/hotels/';
+      const baseUrl = "https://www.klook.com/en-AU/hotels/";
       const params = new URLSearchParams({
         q: destination,
         check_in: checkin,
@@ -502,49 +515,49 @@
         aff_pid: AFF_ID
       });
 
-      window.open(`${baseUrl}?${params.toString()}`, '_blank');
+      window.open(`${baseUrl}?${params.toString()}`, "_blank");
     }
 
     // ✅ Activities search
-    function searchActivities() {
+    function searchActivities(){
       const city = document.getElementById('activityCity').value.trim();
       const category = document.getElementById('activityCategory').value;
 
-      if (!city) {
-        alert('Please enter a city.');
+      if(!city){
+        alert("Please enter a city.");
         return;
       }
 
-      const baseUrl = 'https://www.klook.com/en-AU/activity/';
+      const baseUrl = "https://www.klook.com/en-AU/activity/";
       const params = new URLSearchParams({
         city: city,
         aff_pid: AFF_ID
       });
 
-      if (category) params.append('category', category);
+      if(category) params.append("category", category);
 
-      window.open(`${baseUrl}?${params.toString()}`, '_blank');
+      window.open(`${baseUrl}?${params.toString()}`, "_blank");
     }
 
     // ✅ Transport search
-    function searchTransport() {
+    function searchTransport(){
       const city = document.getElementById('transportCity').value.trim();
       const type = document.getElementById('transportType').value;
 
-      if (!city) {
-        alert('Please enter a city or airport.');
+      if(!city){
+        alert("Please enter a city or airport.");
         return;
       }
 
-      const baseUrl = 'https://www.klook.com/en-AU/transport/';
+      const baseUrl = "https://www.klook.com/en-AU/transport/";
       const params = new URLSearchParams({
         city: city,
         aff_pid: AFF_ID
       });
 
-      if (type) params.append('category', type);
+      if(type) params.append("category", type);
 
-      window.open(`${baseUrl}?${params.toString()}`, '_blank');
+      window.open(`${baseUrl}?${params.toString()}`, "_blank");
     }
   </script>
 </body>
