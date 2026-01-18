@@ -1,112 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cheap Hotels – Flight07</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css"> <script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
-  (function () {
-      var script = document.createElement("script");
-      script.async = 1;
-      script.src = 'https://emrld.cc/NDg5ODcy.js?t=489872';
-      document.head.appendChild(script);
-  })();
-</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel — Hotels</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+  .tabs { display: flex; background: #f4f4f4; }
+  .tab { padding: 15px 25px; cursor: pointer; border-bottom: 3px solid transparent; }
+  .tab.active { border-color: #0073e6; background: #fff; }
+  .content { padding: 20px; display: none; }
+  .content.active { display: block; }
+  .search-box { max-width: 500px; margin: auto; }
+  input, button { width: 100%; padding: 10px; margin-top: 10px; }
+</style>
 </head>
 <body>
 
-<header class="header">
-  <div class="container">
-    <h1 class="logo">Flight07</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="flight.html">Flights</a>
-      <a href="hotels.html">Hotels</a>
-      <a href="blog.html">Blog</a>
-      <a href="tools.html">Tools</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+<div class="tabs">
+  <div class="tab active" data-tab="hotels">Hotels</div>
+  <!-- add more tabs here if you like -->
+</div>
+
+<div id="hotels" class="content active">
+  <h2>Search Hotels</h2>
+  <div class="search-box">
+    <input type="text" id="destination" placeholder="Enter destination (e.g., Tokyo)" />
+    <input type="date" id="checkin" />
+    <input type="date" id="checkout" />
+    <button onclick="searchHotels()">Search Deals</button>
   </div>
-</header>
+</div>
 
-<section class="hero">
-  <div class="container">
-    <h2>Find the Best Hotel Deals Worldwide</h2>
-    <p>Compare hotel prices from trusted booking platforms.</p>
-    <a class="btn" href="#search">Search Hotels</a>
-  </div>
-</section>
+<script>
+// Simple tab switching
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.tab).classList.add('active');
+  });
+});
 
-<section class="features" id="search">
-  <div class="container grid">
+// Replace AFF_ID with your affiliate/publisher ID
+const AFF_ID = 'affiliate-alwayson|your_aff_id_here';
 
-    <div class="card">
-      <h3>🌆 City Hotels</h3>
-      <p>Affordable hotels in top cities around the world.</p>
-      <a class="btn" href="https://klook.tpx.lt/1KRa6gs9"
-        target="_blank">
-        Search City Hotels
-      </a>
-    </div>
+function searchHotels() {
+  const dest = encodeURIComponent(document.getElementById('destination').value.trim());
+  const checkin = document.getElementById('checkin').value;
+  const checkout = document.getElementById('checkout').value;
 
-    <div class="card">
-      <h3>🏖 Resorts & Holidays</h3>
-      <p>Luxury resorts and holiday stays at the best prices.</p>
-      <a class="btn" href="https://klook.tpx.lt/1KRa6gs9"
-        target="_blank">
-        Find Resorts
-      </a>
-    </div>
+  if (!dest || !checkin || !checkout) {
+    alert('Please fill all fields.');
+    return;
+  }
 
-    <div class="card">
-      <h3>💼 Business Stays</h3>
-      <p>Comfortable hotels perfect for business travel.</p>
-      <a class="btn" href="https://klook.tpx.lt/1KRa6gs9"
-        target="_blank">
-        Business Hotels
-      </a>
-    </div>
+  // Construct the Klook hotel search URL with affiliate tracking
+  const baseUrl = 'https://www.klook.com/en-US/hotels/'; 
+  const params = new URLSearchParams({
+    q: dest,
+    checkin: checkin,
+    checkout: checkout,
+    aff_pid: AFF_ID
+  });
 
-  </div>
-</section>
+  const url = `${baseUrl}?${params.toString()}`;
 
-<section class="features">
-  <div class="container">
-    <h2 style="text-align:center;margin-bottom:20px;">
-      Why Book Hotels with Flight07?
-    </h2>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Best Price Guarantee</h3>
-        <p>Compare top hotel booking sites to find the lowest prices.</p>
-      </div>
-
-      <div class="card">
-        <h3>Trusted Platforms</h3>
-        <p>We work only with reliable and secure booking partners.</p>
-      </div>
-
-      <div class="card">
-        <h3>Free Cancellation</h3>
-        <p>Many hotels offer free cancellation options.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container">
-    <p>© 2026 Flight07. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="privacy.html">Privacy</a>
-      <a href="disclaimer.html">Disclaimer</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
-</footer>
+  // Redirect user to Klook hotel results
+  window.open(url, '_blank');
+}
+</script>
 
 </body>
 </html>
-
-
