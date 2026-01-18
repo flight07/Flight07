@@ -509,110 +509,96 @@
   </div>
 
   <script>
-    // ✅ Put your real affiliate id here
-    const AFF_ID = 'affiliate-alwayson|your_aff_id_here';
+  // ✅ Your tracking query string (this is the ONLY thing that matters)
+  const KLOOK_TRACK_QS =
+    "aid=api%7C13694%7C2ecb4c4e4ba2435bbfaac09e3-697179%7Cpid%7C697179&aff_pid=697179&aff_sid=&aff_adid=1197556&utm_medium=affiliate-alwayson&utm_source=network&utm_campaign=13694&utm_term=697179&utm_content=&aff_klick_id=119980982519-api%7C13694%7C2ecb4c4e4ba2435bbfaac09e3-697179%7Cpid%7C697179-1197556-da498b6";
 
-    // ✅ Tabs
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        const targetId = tab.dataset.tab;
-        const target = document.getElementById(targetId);
-        if (!target) return;
+  // ✅ Helper opens Klook with tracking ALWAYS
+  function openTrackedKlook(baseUrl, extraParams) {
+    const url = `${baseUrl}?${KLOOK_TRACK_QS}&${extraParams.toString()}`;
+    window.open(url, "_blank");
+  }
 
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+  // ✅ Default dates (today+2 to today+5)
+  (function setDefaultDates() {
+    const today = new Date();
+    const checkinDate = new Date(today);
+    const checkoutDate = new Date(today);
 
-        tab.classList.add('active');
-        target.classList.add('active');
-      });
+    checkinDate.setDate(today.getDate() + 2);
+    checkoutDate.setDate(today.getDate() + 5);
+
+    const ci = document.getElementById("checkin");
+    const co = document.getElementById("checkout");
+
+    if (ci && co) {
+      ci.value = checkinDate.toISOString().split("T")[0];
+      co.value = checkoutDate.toISOString().split("T")[0];
+    }
+  })();
+
+  // ✅ QUICK AREA CHIPS (Seminyak / Ubud etc)
+  window.quickBaliHotel = function(area) {
+    const dest = document.getElementById("destination");
+    if (dest) dest.value = area;
+    window.searchHotels();
+  };
+
+  // ✅ HOTELS
+  window.searchHotels = function () {
+    const destination = document.getElementById("destination").value.trim();
+    const checkin = document.getElementById("checkin").value;
+    const checkout = document.getElementById("checkout").value;
+
+    if (!destination || !checkin || !checkout) {
+      alert("Please enter destination and dates.");
+      return;
+    }
+    if (new Date(checkout) <= new Date(checkin)) {
+      alert("Check-out must be after check-in.");
+      return;
+    }
+
+    const baseUrl = "https://www.klook.com/en-AU/hotels/";
+    const params = new URLSearchParams({
+      q: destination,
+      check_in: checkin,
+      check_out: checkout
     });
 
-    // ✅ Default dates (today+2 to today+5)
-    (function setDefaultDates() {
-      const today = new Date();
-      const checkinDate = new Date(today);
-      const checkoutDate = new Date(today);
+    openTrackedKlook(baseUrl, params);
+  };
 
-      checkinDate.setDate(today.getDate() + 2);
-      checkoutDate.setDate(today.getDate() + 5);
+  // ✅ TOURS / ACTIVITIES
+  window.searchActivities = function () {
+    const city = document.getElementById("activityCity").value.trim();
+    const category = document.getElementById("activityCategory")?.value || "";
 
-      document.getElementById('checkin').value = checkinDate.toISOString().split('T')[0];
-      document.getElementById('checkout').value = checkoutDate.toISOString().split('T')[0];
-    })();
+    const finalCity = city || "Bali";
 
-    // ✅ Quick chips for Bali areas
-    function quickHotel(city){
-      document.getElementById('destination').value = city;
-      searchHotels();
-    }
+    const baseUrl = "https://www.klook.com/en-AU/activity/";
+    const params = new URLSearchParams({
+      city: finalCity
+    });
 
-    // ✅ Hotels search
-    function searchHotels(){
-      const destination = document.getElementById('destination').value.trim();
-      const checkin = document.getElementById('checkin').value;
-      const checkout = document.getElementById('checkout').value;
+    if (category) params.append("category", category);
 
-      if(!destination || !checkin || !checkout){
-        alert("Please enter destination and dates.");
-        return;
-      }
-      if(new Date(checkout) <= new Date(checkin)){
-        alert("Check-out must be after check-in.");
-        return;
-      }
+    openTrackedKlook(baseUrl, params);
+  };
 
-      const baseUrl = "https://www.klook.com/en-AU/hotels/";
-      const params = new URLSearchParams({
-        q: destination,
-        check_in: checkin,
-        check_out: checkout,
-        aff_pid: AFF_ID
-      });
+  // ✅ TRANSFERS / TRANSPORT
+  window.searchTransport = function () {
+    const city = document.getElementById("transportCity")?.value.trim() || "Bali";
+    const type = document.getElementById("transportType")?.value || "";
 
-      window.open(`${baseUrl}?${params.toString()}`, "_blank");
-    }
+    const baseUrl = "https://www.klook.com/en-AU/transport/";
+    const params = new URLSearchParams({
+      city: city
+    });
 
-    // ✅ Activities search
-    function searchActivities(){
-      const city = document.getElementById('activityCity').value.trim();
-      const category = document.getElementById('activityCategory').value;
+    if (type) params.append("category", type);
 
-      if(!city){
-        alert("Please enter a city.");
-        return;
-      }
+    openTrackedKlook(baseUrl, params);
+  };
+</script>
 
-      const baseUrl = "https://www.klook.com/en-AU/activity/";
-      const params = new URLSearchParams({
-        city: city,
-        aff_pid: AFF_ID
-      });
-
-      if(category) params.append("category", category);
-
-      window.open(`${baseUrl}?${params.toString()}`, "_blank");
-    }
-
-    // ✅ Transport search
-    function searchTransport(){
-      const city = document.getElementById('transportCity').value.trim();
-      const type = document.getElementById('transportType').value;
-
-      if(!city){
-        alert("Please enter a city or airport.");
-        return;
-      }
-
-      const baseUrl = "https://www.klook.com/en-AU/transport/";
-      const params = new URLSearchParams({
-        city: city,
-        aff_pid: AFF_ID
-      });
-
-      if(type) params.append("category", type);
-
-      window.open(`${baseUrl}?${params.toString()}`, "_blank");
-    }
-  </script>
-</body>
-</html>
