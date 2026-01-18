@@ -47,7 +47,6 @@
         <option value="">All Activities</option>
         <option value="attractions">Attractions</option>
         <option value="tours">Tours</option>
-        <option value="transport">Transport</option>
         <option value="theme-parks">Theme Parks</option>
         <option value="day-trips">Day Trips</option>
       </select>
@@ -60,7 +59,7 @@
     </div>
   </div>
 
-  <!-- ✅ TRANSPORT (THIS WAS MISSING OR OUTSIDE BODY BEFORE) -->
+  <!-- ✅ TRANSPORT -->
   <div id="transport" class="content">
     <h2>Airport Transfers, SIM Cards & Transport</h2>
 
@@ -83,19 +82,27 @@
     </div>
   </div>
 
-  <!-- ✅ SCRIPT MUST STAY HERE (INSIDE BODY, BEFORE </body>) -->
   <script>
     // ✅ Affiliate ID (replace with your real one)
     const AFF_ID = 'affiliate-alwayson|your_aff_id_here';
 
-    // ✅ Tab switching
+    // ✅ Tab Switching (SAFE - never goes blank)
     document.querySelectorAll('.tab').forEach(tab => {
       tab.addEventListener('click', () => {
+        const targetId = tab.dataset.tab;
+        const target = document.getElementById(targetId);
+
+        if (!target) {
+          console.error("Missing section with id:", targetId);
+          alert("Error: Section not found: " + targetId);
+          return; // ✅ Stops it from hiding everything
+        }
+
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
 
         tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).classList.add('active');
+        target.classList.add('active');
       });
     });
 
