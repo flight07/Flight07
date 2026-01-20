@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Flight07 – Compare Cheap Flights Worldwide</title>
+  <title>Flight07 – Cheap Flights Worldwide</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
+<!-- HEADER -->
 <header class="header">
-  <div class="container">
-    <h1 class="logo">Flight07</h1>
+  <div class="container header-flex">
+    <div class="logo">Flight07</div>
     <nav>
       <a href="index.html">Home</a>
       <a href="flight.html">Flights</a>
@@ -20,61 +20,75 @@
   </div>
 </header>
 
-<!-- HERO SECTION -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <h1>Compare Cheap Flights Worldwide</h1>
+  <div class="hero-overlay">
+    <h1>The best flight deals from anywhere, to everywhere</h1>
 
-    <p class="hero-subtitle">
-      Search and compare flight prices from trusted booking partners.
-    </p>
+    <!-- SEARCH BOX -->
+    <form class="search-box" action="flight.html">
+      <div class="field">
+        <label>From</label>
+        <input type="text" placeholder="City or airport">
+      </div>
 
-    <a href="flight.html" class="btn cta-btn">Search Flights Now</a>
+      <div class="field">
+        <label>To</label>
+        <input type="text" placeholder="City or airport">
+      </div>
+
+      <div class="field">
+        <label>Depart</label>
+        <input type="date">
+      </div>
+
+      <div class="field">
+        <label>Return</label>
+        <input type="date">
+      </div>
+
+      <div class="field">
+        <label>Travellers</label>
+        <select>
+          <option>1 Adult, Economy</option>
+          <option>2 Adults, Economy</option>
+          <option>Family</option>
+        </select>
+      </div>
+
+      <button type="submit">Search</button>
+    </form>
 
     <p class="hero-trust">
-      ✓ Secure redirect to trusted partners &nbsp;&nbsp; ✓ No extra cost to you
+      ✓ Secure redirect to trusted partners &nbsp; ✓ No extra cost to you
     </p>
   </div>
 </section>
 
-<!-- FEATURES / CARDS -->
+<!-- FEATURES -->
 <section class="features">
   <div class="container grid">
-
     <div class="card">
-      <h3>International Flights</h3>
-      <p>Find cheap international routes worldwide.</p>
-      <a href="flight.html" class="btn">Search International</a>
+      <h3>Explore anywhere</h3>
+      <p>Find cheap flights from anywhere to everywhere.</p>
     </div>
-
     <div class="card">
-      <h3>Domestic Flights</h3>
-      <p>Compare prices for local and regional flights.</p>
-      <a href="flight.html" class="btn">Search Domestic</a>
+      <h3>Compare airlines</h3>
+      <p>Compare prices from trusted booking partners.</p>
     </div>
-
     <div class="card">
-      <h3>Best Deals</h3>
-      <p>Discover the latest flight offers and deals.</p>
-      <a href="flight.html" class="btn">View Deals</a>
+      <h3>Find best dates</h3>
+      <p>Flexible travel dates help you save more.</p>
     </div>
-
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="footer">
-  <div class="container">
-    <p>
-      Flight07 compares flights from trusted partners.
-      We may earn a commission at no extra cost to you.
-    </p>
-
-    <div class="footer-links">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#">Contact</a>
-    </div>
-  </div>
+  <p>
+    Flight07 compares flights from trusted partners.  
+    We may earn a commission at no extra cost to you.
+  </p>
 </footer>
 
 </body>
