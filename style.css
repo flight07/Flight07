@@ -75,8 +75,9 @@ body {
   border-radius: 5px;
 }
 
-.btn:hover {
-  opacity: 0.9;
+.cta-btn {
+  font-size: 16px;
+  padding: 12px 28px;
 }
 
 /* FEATURES */
@@ -119,4 +120,5 @@ body {
 .footer-links a:hover {
   text-decoration: underline;
 }
+
 
