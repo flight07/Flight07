@@ -49,10 +49,10 @@ body {
 }
 
 /* HERO */
-.hero {
-  background: linear-gradient(135deg, #1d70b8, #0b3c5d);
-  color: #fff;
-  padding: 80px 0;
+.hero-trust {
+  margin-top: 10px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
   text-align: center;
 }
 
@@ -119,3 +119,4 @@ body {
 .footer-links a:hover {
   text-decoration: underline;
 }
+
