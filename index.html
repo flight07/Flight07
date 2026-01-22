@@ -6,11 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* ---------- RESET ---------- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -38,13 +35,14 @@
 
     /* ---------- HERO ---------- */
     .hero {
-      height: 60vh;
-      min-height: 420px;
+      height: 75vh;
+      min-height: 520px;
       background: url("https://images.unsplash.com/photo-1502920514313-52581002a659") center/cover no-repeat;
       position: relative;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
+      padding-bottom: 80px;
     }
 
     .hero::before {
@@ -54,44 +52,14 @@
       background: rgba(0,0,0,0.55);
     }
 
-    .hero-box {
+    /* ---------- DEALS IN HERO ---------- */
+    .hero-deals {
       position: relative;
-      background: rgba(10,25,47,0.9);
-      padding: 30px 40px;
-      border-radius: 16px;
-      text-align: center;
-      color: #fff;
-    }
-
-    .hero-box h1 {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-
-    .hero-box p {
-      font-size: 15px;
-      opacity: 0.95;
-    }
-
-    /* ---------- DEALS SECTION ---------- */
-    .deals {
       max-width: 1400px;
-      margin: -60px auto 80px;
+      width: 100%;
       padding: 0 30px;
-      text-align: center;
     }
 
-    .deals h2 {
-      margin-bottom: 10px;
-      font-size: 22px;
-    }
-
-    .deals p {
-      color: #555;
-      margin-bottom: 35px;
-    }
-
-    /* ---------- DEAL GRID (ONE LINE) ---------- */
     .deal-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -102,7 +70,7 @@
       background: #fff;
       border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
       transition: transform 0.2s ease;
     }
 
@@ -117,19 +85,20 @@
     }
 
     .deal-body {
-      padding: 16px;
+      padding: 14px;
+      text-align: center;
     }
 
     .deal-body h3 {
-      font-size: 15px;
+      font-size: 14px;
       margin-bottom: 4px;
     }
 
     .deal-body span {
       display: block;
-      font-size: 13px;
+      font-size: 12px;
       color: #666;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .deal-btn {
@@ -138,21 +107,18 @@
       background: #0a1930;
       color: #fff;
       border-radius: 6px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: bold;
     }
 
     /* ---------- MOBILE ---------- */
-    @media (max-width: 1100px) {
-      .deal-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    @media (max-width: 1200px) {
+      .deal-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 600px) {
-      .deal-grid {
-        grid-template-columns: 1fr;
-      }
+      .deal-grid { grid-template-columns: 1fr; }
+      .hero { padding-bottom: 40px; }
     }
 
     /* ---------- FOOTER ---------- */
@@ -177,64 +143,57 @@
   </nav>
 </header>
 
-<!-- HERO -->
+<!-- HERO WITH DEAL CARDS -->
 <section class="hero">
-  <div class="hero-box">
-    <h1>Popular Flight Deals</h1>
-    <p>Hand-picked international destinations travellers love</p>
-  </div>
-</section>
+  <div class="hero-deals">
 
-<!-- DEALS -->
-<section class="deals">
-  <h2>🔥 Popular Flight Deals</h2>
-  <p>Click a destination to view the latest prices</p>
+    <div class="deal-grid">
 
-  <div class="deal-grid">
-
-    <div class="deal-card">
-      <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c" alt="Dubai">
-      <div class="deal-body">
-        <h3>Melbourne → Dubai</h3>
-        <span>Luxury • Shopping</span>
-        <a href="flight.html" class="deal-btn">View Deal</a>
+      <div class="deal-card">
+        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c" alt="Dubai">
+        <div class="deal-body">
+          <h3>Melbourne → Dubai</h3>
+          <span>Luxury • Shopping</span>
+          <a href="flight.html" class="deal-btn">View Deal</a>
+        </div>
       </div>
-    </div>
 
-    <div class="deal-card">
-      <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c" alt="Tokyo">
-      <div class="deal-body">
-        <h3>Melbourne → Tokyo</h3>
-        <span>Culture • Food</span>
-        <a href="flight.html" class="deal-btn">View Deal</a>
+      <div class="deal-card">
+        <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c" alt="Tokyo">
+        <div class="deal-body">
+          <h3>Melbourne → Tokyo</h3>
+          <span>Culture • Food</span>
+          <a href="flight.html" class="deal-btn">View Deal</a>
+        </div>
       </div>
-    </div>
 
-    <div class="deal-card">
-      <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365" alt="Thailand">
-      <div class="deal-body">
-        <h3>Melbourne → Thailand</h3>
-        <span>Beaches • Value</span>
-        <a href="flight.html" class="deal-btn">View Deal</a>
+      <div class="deal-card">
+        <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365" alt="Thailand">
+        <div class="deal-body">
+          <h3>Melbourne → Thailand</h3>
+          <span>Beaches • Value</span>
+          <a href="flight.html" class="deal-btn">View Deal</a>
+        </div>
       </div>
-    </div>
 
-    <div class="deal-card">
-      <img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e" alt="Bali">
-      <div class="deal-body">
-        <h3>Melbourne → Bali</h3>
-        <span>Resorts • Relax</span>
-        <a href="flight.html" class="deal-btn">View Deal</a>
+      <div class="deal-card">
+        <img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e" alt="Bali">
+        <div class="deal-body">
+          <h3>Melbourne → Bali</h3>
+          <span>Resorts • Relax</span>
+          <a href="flight.html" class="deal-btn">View Deal</a>
+        </div>
       </div>
-    </div>
 
-    <div class="deal-card">
-      <img src="https://images.unsplash.com/photo-1508964942454-1a56651d54ac" alt="Singapore">
-      <div class="deal-body">
-        <h3>Melbourne → Singapore</h3>
-        <span>City • Food</span>
-        <a href="flight.html" class="deal-btn">View Deal</a>
+      <div class="deal-card">
+        <img src="https://images.unsplash.com/photo-1508964942454-1a56651d54ac" alt="Singapore">
+        <div class="deal-body">
+          <h3>Melbourne → Singapore</h3>
+          <span>City • Food</span>
+          <a href="flight.html" class="deal-btn">View Deal</a>
+        </div>
       </div>
+
     </div>
 
   </div>
