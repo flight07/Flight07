@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Flight07 – Compare Flights & Hotels</title>
+  <title>Flight07 – Best Flight Deals from Melbourne</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -44,11 +44,11 @@
       font-weight: 600;
     }
 
-    /* ---------- HERO ---------- */
+    /* ---------- HERO (DEALS FOCUSED) ---------- */
     .hero {
-      height: 70vh;
-      min-height: 500px;
-      background: url("https://images.unsplash.com/photo-1549693578-d683be217e58") center/cover no-repeat;
+      height: 65vh;
+      min-height: 480px;
+      background: url("https://images.unsplash.com/photo-1502920514313-52581002a659") center/cover no-repeat;
       position: relative;
       display: flex;
       align-items: center;
@@ -59,128 +59,129 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.45);
+      background: rgba(0,0,0,0.5);
     }
 
     .hero-box {
       position: relative;
+      max-width: 650px;
       background: rgba(10,25,47,0.9);
       padding: 40px 30px;
-      border-radius: 14px;
-      max-width: 520px;
-      width: 100%;
+      border-radius: 16px;
       text-align: center;
       color: #fff;
     }
 
     .hero-box h2 {
-      margin-bottom: 15px;
-      font-size: 26px;
+      font-size: 30px;
+      margin-bottom: 12px;
     }
 
-    .hero-box input,
-    .hero-box select,
-    .hero-box button {
-      width: 100%;
-      padding: 10px;
-      margin: 6px 0;
-      border-radius: 6px;
-      border: none;
+    .hero-box p {
+      font-size: 16px;
+      margin-bottom: 25px;
+      opacity: 0.95;
     }
 
-    .hero-box button {
+    .hero-btn {
+      display: inline-block;
       background: #ffcc00;
+      color: #000;
+      padding: 14px 34px;
+      border-radius: 10px;
+      font-size: 16px;
       font-weight: bold;
-      cursor: pointer;
     }
 
     .trust {
+      margin-top: 15px;
       font-size: 13px;
-      margin-top: 10px;
       opacity: 0.9;
     }
 
-    /* ---------- CONTENT ---------- */
-    .content {
-      max-width: 1100px;
+    /* ---------- DEALS SECTION ---------- */
+    .deals {
+      max-width: 1150px;
       margin: 80px auto;
       padding: 0 20px;
       text-align: center;
     }
 
-    .content h2 {
+    .deals h2 {
       margin-bottom: 10px;
     }
 
-    .subtitle {
+    .deals p {
       color: #555;
       margin-bottom: 40px;
     }
 
-    /* ---------- FEATURE CARDS ---------- */
-    .features {
+    .deal-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 25px;
-      margin-bottom: 60px;
     }
 
-    .card {
+    .deal-card {
       background: #fff;
-      padding: 30px 25px;
-      border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
     }
 
-    .card h3 {
-      margin-bottom: 10px;
+    .deal-card:hover {
+      transform: translateY(-6px);
     }
 
-    .card p {
-      color: #555;
-      margin-bottom: 20px;
+    .deal-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
     }
 
-    /* ---------- BUTTONS ---------- */
-    .btn {
+    .deal-body {
+      padding: 20px;
+    }
+
+    .deal-body h3 {
+      margin-bottom: 6px;
+    }
+
+    .deal-body span {
+      display: block;
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .deal-btn {
       display: inline-block;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: bold;
+      padding: 10px 18px;
       background: #0a1930;
       color: #fff;
-    }
-
-    .btn:hover {
-      background: #102a4d;
-    }
-
-    /* ---------- ROUTES ---------- */
-    .routes {
-      background: #f0f3f9;
-      padding: 40px 20px;
-      border-radius: 16px;
-    }
-
-    .route-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin: 20px 0 30px;
-    }
-
-    .route-btn {
-      background: #fff;
-      padding: 10px 18px;
       border-radius: 8px;
-      color: #0a1930;
-      font-weight: 600;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-weight: bold;
+      font-size: 14px;
     }
 
-    .route-btn:hover {
-      background: #e8eeff;
+    /* ---------- SECONDARY SEARCH ---------- */
+    .quick-search {
+      background: #eef2f8;
+      padding: 50px 20px;
+      margin-top: 80px;
+      text-align: center;
+    }
+
+    .quick-search h3 {
+      margin-bottom: 15px;
+    }
+
+    .quick-search a {
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #0a1930;
     }
 
     /* ---------- FOOTER ---------- */
@@ -188,7 +189,7 @@
       background: #0a1930;
       color: #fff;
       text-align: center;
-      padding: 20px;
+      padding: 22px;
       margin-top: 80px;
       font-size: 14px;
     }
@@ -206,60 +207,78 @@
   </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-box">
-    <h2>The best flight deals from anywhere to everywhere</h2>
-
-    <input type="text" placeholder="From city or airport">
-    <input type="text" placeholder="To city or airport">
-    <input type="text" placeholder="Depart (dd/mm/yyyy)">
-    <input type="text" placeholder="Return (dd/mm/yyyy)">
-    <select>
-      <option>1 Adult, Economy</option>
-    </select>
-    <button>Search Flights</button>
-
+    <h2>Top Flight Deals from Melbourne</h2>
+    <p>Discover the best-priced flights to popular international destinations.</p>
+    <a href="#deals" class="hero-btn">View Deals</a>
     <div class="trust">
-      ✔ Secure redirect • ✔ No extra cost • ✔ Trusted partners
+      ✔ Secure redirect • ✔ No hidden fees • ✔ Trusted partners
     </div>
   </div>
 </section>
 
-<section class="content">
-  <h2>Find the Best Flight Deals Worldwide</h2>
-  <p class="subtitle">Compare cheap flights from trusted airlines and booking partners</p>
+<!-- DEALS -->
+<section class="deals" id="deals">
+  <h2>🔥 Popular Flight Deals</h2>
+  <p>Hand-picked destinations travellers love right now</p>
 
-  <div class="features">
-    <div class="card">
-      <h3>🌍 Explore Anywhere</h3>
-      <p>Find cheap flights from anywhere to everywhere.</p>
-      <a href="flight.html" class="btn">Explore Flights</a>
+  <div class="deal-grid">
+
+    <div class="deal-card">
+      <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c" alt="Dubai">
+      <div class="deal-body">
+        <h3>Melbourne → Dubai</h3>
+        <span>Luxury • Shopping • Stopover hub</span>
+        <a href="flight.html" class="deal-btn">View Deal</a>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>✈️ Compare Airlines</h3>
-      <p>Compare prices from trusted airlines worldwide.</p>
-      <a href="flight.html" class="btn">Compare Airlines</a>
+    <div class="deal-card">
+      <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c" alt="Tokyo">
+      <div class="deal-body">
+        <h3>Melbourne → Tokyo</h3>
+        <span>Culture • Food • Technology</span>
+        <a href="flight.html" class="deal-btn">View Deal</a>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>📅 Find Best Dates</h3>
-      <p>Flexible dates help you save more on flights.</p>
-      <a href="flight.html" class="btn">Find Cheapest Dates</a>
+    <div class="deal-card">
+      <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365" alt="Thailand">
+      <div class="deal-body">
+        <h3>Melbourne → Thailand</h3>
+        <span>Beaches • Nightlife • Value</span>
+        <a href="flight.html" class="deal-btn">View Deal</a>
+      </div>
     </div>
+
+    <div class="deal-card">
+      <img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e" alt="Bali">
+      <div class="deal-body">
+        <h3>Melbourne → Bali</h3>
+        <span>Relaxation • Resorts • Nature</span>
+        <a href="flight.html" class="deal-btn">View Deal</a>
+      </div>
+    </div>
+
+    <div class="deal-card">
+      <img src="https://images.unsplash.com/photo-1508964942454-1a56651d54ac" alt="Singapore">
+      <div class="deal-body">
+        <h3>Melbourne → Singapore</h3>
+        <span>City breaks • Food • Transit hub</span>
+        <a href="flight.html" class="deal-btn">View Deal</a>
+      </div>
+    </div>
+
   </div>
+</section>
 
-  <div class="routes">
-    <h3>🔥 Popular Flight Routes</h3>
-
-    <div class="route-buttons">
-      <a href="flight.html" class="route-btn">Melbourne → Delhi</a>
-      <a href="flight.html" class="route-btn">Sydney → Delhi</a>
-      <a href="flight.html" class="route-btn">Melbourne → Tokyo</a>
-    </div>
-
-    <a href="flight.html" class="btn">Browse All Popular Routes</a>
-  </div>
+<!-- SECONDARY SEARCH -->
+<section class="quick-search">
+  <h3>Looking for a different destination?</h3>
+  <p>Browse all available routes and airlines.</p>
+  <a href="flight.html">Search all flights →</a>
 </section>
 
 <footer>
