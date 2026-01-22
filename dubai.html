@@ -1,609 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dubai Hotel Deals + Tours & Transfers | Travel Deals</title>
+  <meta charset="UTF-8">
+  <title>Melbourne to Dubai Deals | Flights, Hotels & Transport – Flight07</title>
 
-  <meta name="description" content="Find Dubai hotel deals, book top-rated tours, and compare airport transfers in seconds. Fast search + affiliate offers." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Compare cheap flights from Melbourne to Dubai, hotel deals in the best Dubai areas, airport transfers, tours and essential travel tips for Australians.">
 
-  <style>
-    :root{
-      --bg:#f4f6fb;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
-      --brand:#2563eb;
-      --brandDark:#1d4ed8;
-      --border:#e5e7eb;
-      --shadow:0 12px 30px rgba(15,23,42,.10);
-      --radius:18px;
-    }
+  <link rel="stylesheet" href="style.css">
 
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    /* ===== TOP NAV ===== */
-    .topbar{
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .topbar-inner{
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 12px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      font-weight: 900;
-      letter-spacing: .2px;
-    }
-
-    .logo{
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
-      box-shadow: 0 10px 18px rgba(37,99,235,.25);
-    }
-
-    .brand small{
-      display:block;
-      color: var(--muted);
-      font-weight: 700;
-      font-size: 12px;
-      margin-top: 2px;
-      letter-spacing: 0;
-    }
-
-    .nav-actions{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: #fff;
-      color: var(--text);
-      font-weight: 800;
-      text-decoration:none;
-      cursor:pointer;
-      transition: .18s ease;
-      box-shadow: 0 1px 0 rgba(0,0,0,.03);
-      white-space: nowrap;
-    }
-
-    .btn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 10px 18px rgba(0,0,0,.08);
-    }
-
-    .btn.primary{
-      background: var(--brand);
-      border-color: transparent;
-      color:#fff;
-    }
-    .btn.primary:hover{ background: var(--brandDark); }
-
-    /* ===== PAGE WRAP ===== */
-    .wrap{
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 18px 16px 60px;
-    }
-
-    /* ===== HERO ===== */
-    .hero{
-      background: linear-gradient(135deg, #ffffff, #eef2ff);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 26px 20px;
-      margin-top: 18px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero h1{
-      margin:0;
-      font-size: 30px;
-      letter-spacing: -0.4px;
-    }
-
-    .hero p{
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
-      max-width: 760px;
-    }
-
-    .badge-row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top: 14px;
-    }
-    .badge{
-      font-size:12px;
-      font-weight: 800;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(37,99,235,.08);
-      border: 1px solid rgba(37,99,235,.14);
-      color: var(--text);
-    }
-
-    /* ===== SEO CONTENT ===== */
-    .seo{
-      margin-top: 16px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      line-height: 1.65;
-    }
-
-    .seo h2{
-      margin: 0 0 10px;
-      font-size: 20px;
-      letter-spacing: -0.2px;
-    }
-    .seo p{
-      margin: 10px 0;
-      color: #111827;
-      font-size: 14px;
-    }
-    .seo ul{
-      margin: 10px 0 0 18px;
-      color: #111827;
-      font-size: 14px;
-    }
-    .seo li{ margin: 6px 0; }
-
-    /* ===== TABS ===== */
-    .tabs{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top: 16px;
-    }
-
-    .tab{
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background:#fff;
-      cursor:pointer;
-      font-weight: 900;
-      transition: .18s ease;
-      user-select:none;
-    }
-
-    .tab:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 10px 18px rgba(0,0,0,.08);
-    }
-
-    .tab.active{
-      background: var(--brand);
-      color:#fff;
-      border-color: transparent;
-    }
-
-    /* ===== CARD ===== */
-    .card{
-      display:none;
-      margin-top: 16px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 18px;
-    }
-    .card.active{ display:block; }
-
-    .card h2{
-      margin:0;
-      font-size: 20px;
-      letter-spacing: -0.2px;
-    }
-
-    .card .sub{
-      margin: 6px 0 14px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    /* ===== SAME SIZE INPUTS ===== */
-    .form{
-      max-width: 720px;
-      margin: 0 auto;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap: 6px;
-    }
-
-    .label{
-      font-size:12px;
-      color: var(--muted);
-      font-weight: 800;
-    }
-
-    input, select{
-      width: 100%;
-      padding: 12px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      outline: none;
-      font-size: 14px;
-      background: #fff;
-    }
-
-    input:focus, select:focus{
-      border-color: rgba(37,99,235,.65);
-      box-shadow: 0 0 0 4px rgba(37,99,235,.12);
-    }
-
-    .full{ grid-column: 1 / -1; }
-
-    .cta{
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: none;
-      background: var(--brand);
-      color: #fff;
-      font-weight: 900;
-      cursor:pointer;
-      transition: .18s ease;
-    }
-    .cta:hover{
-      background: var(--brandDark);
-      transform: translateY(-1px);
-      box-shadow: 0 12px 24px rgba(37,99,235,.25);
-    }
-
-    .quick{
-      max-width: 720px;
-      margin: 12px auto 0;
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .chip{
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background:#fff;
-      font-weight: 900;
-      cursor:pointer;
-      transition: .18s ease;
-    }
-    .chip:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 10px 18px rgba(0,0,0,.08);
-    }
-
-    .note{
-      max-width: 720px;
-      margin: 10px auto 0;
-      color: var(--muted);
-      font-size: 13px;
-      text-align:center;
-      line-height:1.5;
-    }
-
-    .footer{
-      margin-top: 20px;
-      text-align:center;
-      font-size:12px;
-      color: var(--muted);
-    }
-
-    @media (max-width: 760px){
-      .form{ grid-template-columns: 1fr; }
-      .hero h1{ font-size: 24px; }
-    }
-  </style>
+  <!-- EXISTING SCRIPT – DO NOT REMOVE -->
+  <script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
+    (function () {
+      var script = document.createElement("script");
+      script.async = 1;
+      script.src = 'https://emrld.cc/NDg5ODcy.js?t=489872';
+      document.head.appendChild(script);
+    })();
+  </script>
 </head>
 
 <body>
 
-  <!-- ✅ TOP NAV WITH HOME BUTTON -->
-  <div class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <div class="logo"></div>
-        <div>
-          Travel Deals
-          <small>Dubai • Hotels • Activities • Transfers</small>
-        </div>
-      </div>
+<header class="header">
+  <div class="container header-flex">
+    <div class="logo">Flight07</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="flight.html">Flights</a>
+      <a href="hotels.html">Hotels</a>
+    </nav>
+  </div>
+</header>
 
-      <div class="nav-actions">
-        <a class="btn" href="./index.html">🏠 Home</a>
-        <a class="btn primary" href="#search">🔎 Search</a>
-      </div>
+<!-- HERO -->
+<section class="hero hero-small">
+  <div class="hero-overlay">
+    <h1>Melbourne to Dubai Deals</h1>
+    <p>
+      Compare flights, luxury hotel deals, airport transfers, tours and essential
+      travel tips for Australians.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#flights" class="btn">Find Flights</a>
+      <a href="#hotels" class="btn btn-outline">Find Hotels</a>
+      <a href="#transport" class="btn btn-outline">Airport Transfers</a>
     </div>
   </div>
+</section>
 
-  <div class="wrap" id="search">
+<main class="page-wrap">
 
-    <!-- ✅ HERO -->
-    <div class="hero">
-      <h1>Dubai Deals: Luxury Hotels + Tours + Airport Transfers</h1>
-      <p>
-        Dubai is one of the highest paying destinations for hotel commissions. Search hotels, book tours,
-        and find airport transfers in seconds.
-      </p>
+  <!-- FLIGHTS -->
+  <section id="flights" class="content-card">
+    <h2>✈️ Cheap Flights from Melbourne to Dubai</h2>
+    <ul>
+      <li><strong>Flight time:</strong> 14–15 hours (1 stop)</li>
+      <li><strong>Stops:</strong> Mostly 1 stop</li>
+      <li><strong>Popular airlines:</strong> Emirates, Qantas, Etihad, Qatar Airways</li>
+      <li><strong>Cheapest months:</strong> Feb–Mar, May–Jun, Sep</li>
+    </ul>
 
-      <div class="badge-row">
-        <div class="badge">✅ High Commission</div>
-        <div class="badge">✅ Luxury + Family Deals</div>
-        <div class="badge">✅ Fast & Mobile Friendly</div>
+    <!-- PASTE FLIGHT WIDGET HERE -->
+  </section>
+
+  <!-- HOTELS -->
+  <section id="hotels" class="content-card">
+    <h2>🏨 Dubai Hotel Deals – Best Areas to Stay</h2>
+
+    <div class="area-grid">
+      <div class="area-card">
+        <h3>Dubai Marina</h3>
+        <p>Beachfront living, nightlife and restaurants. Very popular with Australians.</p>
+      </div>
+      <div class="area-card">
+        <h3>Downtown Dubai</h3>
+        <p>Burj Khalifa, Dubai Mall and city attractions.</p>
+      </div>
+      <div class="area-card">
+        <h3>Palm Jumeirah</h3>
+        <p>Luxury resorts and private beaches.</p>
+      </div>
+      <div class="area-card">
+        <h3>Deira & Old Dubai</h3>
+        <p>Traditional markets, culture and budget-friendly hotels.</p>
       </div>
     </div>
 
-    <!-- ✅ SEO CONTENT -->
-    <div class="seo">
-      <h2>Best Dubai Areas to Stay (Marina, Downtown, Palm Jumeirah)</h2>
-      <p>
-        Dubai has world-famous hotels and premium resorts. For the best experience, search deals in
-        <strong>Dubai Marina</strong> (beach + nightlife),
-        <strong>Downtown Dubai</strong> (Burj Khalifa + Dubai Mall),
-        and <strong>Palm Jumeirah</strong> (luxury resorts).
-      </p>
+    <!-- PASTE HOTEL WIDGET HERE -->
+  </section>
 
-      <p><strong>Quick Dubai booking tips:</strong></p>
-      <ul>
-        <li>Book early for weekends — hotels sell out fast.</li>
-        <li>Dubai Marina has the best overall location.</li>
-        <li>Downtown is best for shopping + city views.</li>
-        <li>Palm Jumeirah is best for luxury resorts.</li>
-      </ul>
-    </div>
+  <!-- TRANSPORT -->
+  <section id="transport" class="content-card">
+    <h2>🚕 Transport & Airport Transfers in Dubai</h2>
+    <ul>
+      <li>Dubai Metro is clean and efficient</li>
+      <li>Taxis are affordable and widely available</li>
+      <li>Private airport transfers recommended for families</li>
+      <li>Dubai International Airport (DXB) & Al Maktoum (DWC)</li>
+    </ul>
 
-    <!-- ✅ TABS -->
-    <div class="tabs">
-      <div class="tab active" data-tab="hotels">🏨 Dubai Hotels</div>
-      <div class="tab" data-tab="activities">🎟️ Dubai Tours</div>
-      <div class="tab" data-tab="transport">🚕 Dubai Transfers</div>
-    </div>
+    <!-- PASTE TRANSPORT / TRANSFER WIDGET HERE -->
+  </section>
 
-    <!-- ✅ HOTELS -->
-    <div id="hotels" class="card active">
-      <h2>Dubai Hotels</h2>
-      <div class="sub">Search luxury hotels, city stays & family resorts.</div>
+  <!-- ESSENTIALS -->
+  <section class="content-card">
+    <h2>🏙 Essential Dubai Travel Guide</h2>
 
-      <div class="form">
-        <div class="field full">
-          <div class="label">Destination</div>
-          <input type="text" id="destination" placeholder="Try: Dubai Marina, Downtown Dubai, Palm Jumeirah" />
-        </div>
+    <h3>Best Time to Visit</h3>
+    <ul>
+      <li><strong>Nov–Mar:</strong> Best weather (peak season)</li>
+      <li><strong>Apr–May:</strong> Warm but cheaper</li>
+      <li>Summer is extremely hot but very affordable</li>
+    </ul>
 
-        <div class="field">
-          <div class="label">Check-in</div>
-          <input type="date" id="checkin" />
-        </div>
+    <h3>Visa & Money</h3>
+    <ul>
+      <li>Australians receive visa on arrival</li>
+      <li>Currency: UAE Dirham (AED)</li>
+      <li>Cards widely accepted</li>
+    </ul>
+  </section>
 
-        <div class="field">
-          <div class="label">Check-out</div>
-          <input type="date" id="checkout" />
-        </div>
+  <!-- FAQ -->
+  <section class="content-card">
+    <h2>❓ Frequently Asked Questions</h2>
+    <p><strong>How long is the flight?</strong> Around 14–15 hours with one stop.</p>
+    <p><strong>Is Dubai expensive?</strong> Hotels range from affordable to ultra-luxury.</p>
+    <p><strong>Is Dubai safe?</strong> Yes, Dubai is very safe for tourists.</p>
+  </section>
 
-        <div class="field full">
-          <button class="cta" type="button" onclick="searchHotels()">Search Dubai Hotels →</button>
-        </div>
-      </div>
+</main>
 
-      <div class="quick">
-        <button class="chip" type="button" onclick="quickHotel('Dubai Marina')">Dubai Marina</button>
-        <button class="chip" type="button" onclick="quickHotel('Downtown Dubai')">Downtown</button>
-        <button class="chip" type="button" onclick="quickHotel('Palm Jumeirah')">Palm</button>
-        <button class="chip" type="button" onclick="quickHotel('Jumeirah Beach')">Jumeirah</button>
-        <button class="chip" type="button" onclick="quickHotel('Deira')">Deira</button>
-      </div>
-
-      <div class="note">Tip: Dubai hotels pay higher commission than most destinations.</div>
-    </div>
-
-    <!-- ✅ ACTIVITIES -->
-    <div id="activities" class="card">
-      <h2>Dubai Tours & Activities</h2>
-      <div class="sub">Desert safari, Burj Khalifa, city tours & more.</div>
-
-      <div class="form">
-        <div class="field full">
-          <div class="label">City / Area</div>
-          <input type="text" id="activityCity" value="Dubai" />
-        </div>
-
-        <div class="field full">
-          <div class="label">Category</div>
-          <select id="activityCategory">
-            <option value="">All Activities</option>
-            <option value="attractions">Attractions</option>
-            <option value="tours">Tours</option>
-            <option value="theme-parks">Theme Parks</option>
-            <option value="day-trips">Day Trips</option>
-          </select>
-        </div>
-
-        <div class="field full">
-          <button class="cta" type="button" onclick="searchActivities()">Explore Dubai Tours →</button>
-        </div>
-      </div>
-
-      <div class="note">⭐ Dubai tours convert high: desert safari, Burj Khalifa, boat cruises.</div>
-    </div>
-
-    <!-- ✅ TRANSPORT -->
-    <div id="transport" class="card">
-      <h2>Dubai Airport Transfers & Transport</h2>
-      <div class="sub">Airport pickup, SIM/eSIM, transport options.</div>
-
-      <div class="form">
-        <div class="field full">
-          <div class="label">City / Airport</div>
-          <input type="text" id="transportCity" value="Dubai Airport" />
-        </div>
-
-        <div class="field full">
-          <div class="label">Type</div>
-          <select id="transportType">
-            <option value="">All Transport</option>
-            <option value="airport-transfers">Airport Transfers</option>
-            <option value="sim-cards">SIM Cards & eSIMs</option>
-            <option value="trains">Trains & Rail Passes</option>
-            <option value="car-rentals">Car Rentals</option>
-          </select>
-        </div>
-
-        <div class="field full">
-          <button class="cta" type="button" onclick="searchTransport()">Find Dubai Transfers →</button>
-        </div>
-      </div>
-
-      <div class="note">🚀 Transfers = high-intent bookings (fastest way to earn).</div>
-    </div>
-
-    <div class="footer">
-      This site contains affiliate links. We may earn a commission at no extra cost to you.
-    </div>
-
-  </div>
-
-  <script>
-    // ✅ Your tracking query string (aff_pid=697179 is INSIDE here)
-    const KLOOK_TRACK_QS =
-      "aid=api%7C13694%7C2ecb4c4e4ba2435bbfaac09e3-697179%7Cpid%7C697179&aff_pid=697179&aff_sid=&aff_adid=1197556&utm_medium=affiliate-alwayson&utm_source=network&utm_campaign=13694&utm_term=697179&utm_content=&aff_klick_id=119980982519-api%7C13694%7C2ecb4c4e4ba2435bbfaac09e3-697179%7Cpid%7C697179-1197556-da498b6";
-
-    function openTrackedKlook(baseUrl, extraParams) {
-      const url = `${baseUrl}?${KLOOK_TRACK_QS}&${extraParams.toString()}`;
-      window.open(url, "_blank", "noopener");
-    }
-
-    // ✅ Tabs switching
-    document.querySelectorAll(".tab").forEach(tab => {
-      tab.addEventListener("click", () => {
-        const targetId = tab.dataset.tab;
-        const target = document.getElementById(targetId);
-        if (!target) return;
-
-        document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-        document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
-
-        tab.classList.add("active");
-        target.classList.add("active");
-      });
-    });
-
-    // ✅ Default dates (today+2 to today+5)
-    (function setDefaultDates() {
-      const today = new Date();
-      const checkinDate = new Date(today);
-      const checkoutDate = new Date(today);
-
-      checkinDate.setDate(today.getDate() + 2);
-      checkoutDate.setDate(today.getDate() + 5);
-
-      document.getElementById("checkin").value = checkinDate.toISOString().split("T")[0];
-      document.getElementById("checkout").value = checkoutDate.toISOString().split("T")[0];
-
-      const dest = document.getElementById("destination");
-      if (dest && !dest.value) dest.value = "Dubai";
-    })();
-
-    // ✅ Chip click helper
-    window.quickHotel = function(area) {
-      document.getElementById("destination").value = area;
-      window.searchHotels();
-    };
-
-    // ✅ Hotels search (tracked)
-    window.searchHotels = function () {
-      const destination = document.getElementById("destination").value.trim();
-      const checkin = document.getElementById("checkin").value;
-      const checkout = document.getElementById("checkout").value;
-
-      if (!destination || !checkin || !checkout) {
-        alert("Please enter destination and dates.");
-        return;
-      }
-      if (new Date(checkout) <= new Date(checkin)) {
-        alert("Check-out must be after check-in.");
-        return;
-      }
-
-      const baseUrl = "https://www.klook.com/en-AU/hotels/";
-      const params = new URLSearchParams({
-        q: destination,
-        check_in: checkin,
-        check_out: checkout
-      });
-
-      openTrackedKlook(baseUrl, params);
-    };
-
-    // ✅ Activities search (tracked)
-    window.searchActivities = function () {
-      const city = (document.getElementById("activityCity").value || "Dubai").trim();
-      const category = document.getElementById("activityCategory")?.value || "";
-
-      const baseUrl = "https://www.klook.com/en-AU/activity/";
-      const params = new URLSearchParams({ city });
-
-      if (category) params.append("category", category);
-
-      openTrackedKlook(baseUrl, params);
-    };
-
-    // ✅ Transport search (tracked)
-    window.searchTransport = function () {
-      const city = (document.getElementById("transportCity")?.value || "Dubai Airport").trim();
-      const type = document.getElementById("transportType")?.value || "";
-
-      const baseUrl = "https://www.klook.com/en-AU/transport/";
-      const params = new URLSearchParams({ city });
-
-      if (type) params.append("category", type);
-
-      openTrackedKlook(baseUrl, params);
-    };
-  </script>
+<footer class="footer">
+  <p>© Flight07 – Compare Flights & Hotels</p>
+</footer>
 
 </body>
 </html>
