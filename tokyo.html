@@ -7,10 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Compare cheap flights from Melbourne to Tokyo, hotel deals in top Tokyo areas, airport transfers and essential travel tips for Australians.">
 
-  <!-- CSS (same as your other pages) -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Your existing script (DO NOT REMOVE) -->
   <script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
     (function () {
       var script = document.createElement("script");
@@ -24,8 +22,8 @@
 <body>
 
 <header class="header">
-  <div class="container">
-    <h1 class="logo">Flight07</h1>
+  <div class="container header-flex">
+    <div class="logo">Flight07</div>
     <nav>
       <a href="index.html">Home</a>
       <a href="flight.html">Flights</a>
@@ -34,16 +32,11 @@
   </div>
 </header>
 
-<main class="container">
-
-  <!-- HERO -->
- <section class="hero hero-small">
+<!-- HERO -->
+<section class="hero hero-small">
   <div class="hero-overlay">
     <h1>Melbourne to Tokyo Deals</h1>
-    <p>
-      Compare flights, hotel deals in top Tokyo areas, airport transfers and essential
-      travel tips for Australians.
-    </p>
+    <p>Compare flights, hotels, airport transfers and essential travel tips for Australians.</p>
 
     <div class="hero-buttons">
       <a href="#flights" class="btn">Find Flights</a>
@@ -53,123 +46,87 @@
   </div>
 </section>
 
-  <hr>
+<main class="page-wrap">
 
-  <!-- FLIGHTS -->
-  <section id="flights">
+  <section id="flights" class="content-card">
     <h2>✈️ Cheap Flights from Melbourne to Tokyo</h2>
-
     <ul>
-      <li>Average flight time: <strong>10–11 hours</strong></li>
-      <li>Most flights include <strong>1 stop</strong></li>
-      <li>Popular airlines for Australians: JAL, ANA, Singapore Airlines, Cathay Pacific, Qantas (codeshare)</li>
-      <li>Cheapest months: <strong>February–March, May–June, late November</strong></li>
+      <li><strong>Flight time:</strong> 10–11 hours</li>
+      <li><strong>Stops:</strong> Mostly 1 stop</li>
+      <li><strong>Popular airlines:</strong> JAL, ANA, Singapore Airlines, Cathay Pacific, Qantas</li>
+      <li><strong>Cheapest months:</strong> Feb–Mar, May–Jun, late Nov</li>
     </ul>
 
-    <!-- INSERT FLIGHT SEARCH WIDGET BELOW -->
-    <!-- DO NOT CHANGE YOUR EXISTING WIDGET CODE -->
+    <!-- FLIGHT WIDGET HERE -->
   </section>
 
-  <hr>
-
-  <!-- HOTELS -->
-  <section id="hotels">
+  <section id="hotels" class="content-card">
     <h2>🏨 Tokyo Hotel Deals – Best Areas to Stay</h2>
 
-    <h3>Shinjuku</h3>
-    <p>Most popular area for Australians. Excellent transport, shopping, nightlife and food. Best for first-time visitors.</p>
+    <div class="area-grid">
+      <div class="area-card">
+        <h3>Shinjuku</h3>
+        <p>Best for first-time visitors. Excellent transport, shopping & nightlife.</p>
+      </div>
+      <div class="area-card">
+        <h3>Shibuya</h3>
+        <p>Trendy cafes, shopping & famous crossing.</p>
+      </div>
+      <div class="area-card">
+        <h3>Ginza</h3>
+        <p>Luxury shopping and premium hotels.</p>
+      </div>
+      <div class="area-card">
+        <h3>Asakusa</h3>
+        <p>Traditional area near temples, more affordable stays.</p>
+      </div>
+    </div>
 
-    <h3>Shibuya</h3>
-    <p>Famous crossing, trendy cafes and shopping. Best for younger travellers and short stays.</p>
-
-    <h3>Ginza</h3>
-    <p>Luxury shopping and premium hotels. Best for high-end stays.</p>
-
-    <h3>Asakusa</h3>
-    <p>Traditional area near temples with more affordable accommodation. Best for culture lovers.</p>
-
-    <!-- INSERT HOTEL SEARCH WIDGET BELOW -->
-    <!-- DO NOT CHANGE YOUR EXISTING WIDGET CODE -->
+    <!-- HOTEL WIDGET HERE -->
   </section>
 
-  <hr>
-
-  <!-- TRANSPORT -->
-  <section id="transport">
+  <section id="transport" class="content-card">
     <h2>🚆 Transport & Airport Transfers in Tokyo</h2>
-
     <ul>
-      <li>World-class train and metro system</li>
+      <li>World-class train & metro system</li>
       <li>Suica / Pasmo cards recommended</li>
       <li>Taxis are clean but expensive</li>
-      <li>Airport transfers available from Narita & Haneda</li>
+      <li>Transfers from Narita & Haneda</li>
     </ul>
 
-    <!-- INSERT TRANSPORT / TRANSFER WIDGET BELOW -->
-    <!-- DO NOT CHANGE YOUR EXISTING WIDGET CODE -->
+    <!-- TRANSPORT WIDGET HERE -->
   </section>
 
-  <hr>
-
-  <!-- ESSENTIALS -->
-  <section>
-    <h2>🌸 Essential Tokyo Travel Guide for Australians</h2>
-
-    <h3>Why Aussies Love Tokyo</h3>
-    <p>Tokyo is clean, safe and efficient, with incredible food and a unique mix of traditional culture and modern city life.</p>
+  <section class="content-card">
+    <h2>🌸 Essential Tokyo Travel Guide</h2>
 
     <h3>Best Time to Visit</h3>
     <ul>
-      <li><strong>March–April:</strong> Cherry blossom season</li>
-      <li><strong>October–November:</strong> Mild weather & autumn colours</li>
-      <li>Winter is colder but cheaper</li>
+      <li><strong>Mar–Apr:</strong> Cherry blossoms</li>
+      <li><strong>Oct–Nov:</strong> Autumn colours</li>
+      <li>Winter is cheaper but colder</li>
     </ul>
 
-    <h3>Visa, Money & Internet</h3>
+    <h3>Visa & Money</h3>
     <ul>
-      <li>Australians get <strong>visa-free short stays</strong></li>
+      <li>Australians get visa-free short stays</li>
       <li>Currency: Japanese Yen (JPY)</li>
-      <li>Pocket Wi-Fi or eSIM recommended</li>
+      <li>eSIM or Pocket Wi-Fi recommended</li>
     </ul>
   </section>
 
-  <hr>
-
-  <!-- BLOG -->
-  <section>
-    <h2>📝 Tokyo Travel Guides</h2>
-    <ul>
-      <li>Best Time to Visit Tokyo from Melbourne</li>
-      <li>Shinjuku vs Shibuya – Where Should Aussies Stay?</li>
-      <li>How Much Does a Tokyo Trip Cost for Australians?</li>
-    </ul>
-  </section>
-
-  <hr>
-
-  <!-- FAQ -->
-  <section>
-    <h2>❓ Frequently Asked Questions</h2>
-
-    <p><strong>How long is the flight from Melbourne to Tokyo?</strong><br>
-    Around 10–11 hours, usually with one stop.</p>
-
-    <p><strong>Which area is best to stay in Tokyo?</strong><br>
-    Shinjuku is best for first-time visitors.</p>
-
-    <p><strong>Is Tokyo expensive?</strong><br>
-    Food and transport are affordable, hotels vary from budget to luxury.</p>
+  <section class="content-card">
+    <h2>❓ FAQs</h2>
+    <p><strong>How long is the flight?</strong> Around 10–11 hours.</p>
+    <p><strong>Best area to stay?</strong> Shinjuku for first-timers.</p>
+    <p><strong>Is Tokyo expensive?</strong> Food & transport are affordable.</p>
   </section>
 
 </main>
 
 <footer class="footer">
-  <div class="container">
-    <p>© Flight07 – Compare Flights & Hotels</p>
-  </div>
+  <p>© Flight07 – Compare Flights & Hotels</p>
 </footer>
 
 </body>
 </html>
-
-
