@@ -44,34 +44,39 @@ nav a {
 
 /* HERO */
 .hero {
-  background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e")
-    center/cover no-repeat;
-}
-
+  background: url("https://images.unsplash.com/photo-1549693578-d683be217e58")
+    center / cover no-repeat;
+  padding: 90px 20px;
 }
 
 .hero-small {
-  padding: 60px 20px;
+  padding: 70px 20px;
 }
 
+/* 🔥 FIXED HERO OVERLAY (THIS IS WHAT YOU ASKED FOR) */
 .hero-overlay {
-  background: rgba(5, 32, 60, 0.75);
-  max-width: 1100px;
+  background: rgba(5, 32, 60, 0.88);
+  max-width: 900px;
   margin: auto;
-  padding: 40px;
-  border-radius: 12px;
+  padding: 50px 40px;
+  border-radius: 16px;
   text-align: center;
-  color: #fff;
+  color: #ffffff;
 }
 
 .hero h1 {
-  font-size: 34px;
-  margin-bottom: 15px;
+  font-size: 38px;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  font-size: 16px;
+  opacity: 0.95;
 }
 
 /* HERO BUTTONS */
 .hero-buttons {
-  margin-top: 20px;
+  margin-top: 22px;
 }
 
 .hero-buttons .btn {
@@ -82,7 +87,7 @@ nav a {
 .btn {
   background: #0071eb;
   color: #fff;
-  padding: 12px 20px;
+  padding: 12px 22px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
@@ -99,6 +104,10 @@ nav a {
   color: #fff;
 }
 
+.btn-outline:hover {
+  background: rgba(255,255,255,0.15);
+}
+
 /* PAGE WRAP */
 .page-wrap {
   max-width: 1100px;
@@ -108,16 +117,17 @@ nav a {
 
 /* CONTENT CARDS */
 .content-card {
-  background: #fff;
-  border-radius: 14px;
-  padding: 30px;
-  margin-bottom: 30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
 }
 
 .content-card h2 {
+  font-size: 24px;
+  margin-bottom: 18px;
   color: #05203c;
-  margin-bottom: 15px;
 }
 
 .content-card h3 {
@@ -146,10 +156,16 @@ nav a {
 }
 
 .area-card {
-  background: #f8fafc;
-  padding: 20px;
-  border-radius: 10px;
+  background: linear-gradient(180deg, #f9fbfd, #ffffff);
+  padding: 24px;
+  border-radius: 14px;
   border: 1px solid #e3e8ef;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.area-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
 .area-card h3 {
@@ -164,12 +180,18 @@ nav a {
   text-align: center;
   padding: 25px;
   margin-top: 40px;
+  font-size: 14px;
+}
+
+/* TEXT SELECTION (FIXES BLUE BLOCK ISSUE) */
+::selection {
+  background: #0071eb;
+  color: #fff;
 }
 
 /* MOBILE */
 @media (max-width: 900px) {
   .hero h1 {
-    font-size: 26px;
+    font-size: 28px;
   }
 }
-
