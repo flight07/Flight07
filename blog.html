@@ -135,4 +135,91 @@
     .newsletter button {
       width: 100%;
       padding: 14px;
-      backgrou
+      background: #000;
+      color: #fff;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      margin-top: 120px;
+      padding: 40px 20px;
+      border-top: 1px solid #eee;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+    }
+
+    footer a {
+      margin: 0 10px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Flight07</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="flight.html">Flights</a>
+    <a href="hotels.html">Hotels</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <h2>Travel Stories, Guides & Places Worth Visiting</h2>
+</section>
+
+<!-- POSTS -->
+<section class="container">
+  <div class="posts">
+
+    <div class="post">
+      <img src="https://images.unsplash.com/photo-1501117716987-c8e1ecb2101c">
+      <h3>10 Best Hotels in Tokyo for Every Budget</h3>
+      <p>A curated guide to where to stay in Tokyo, from capsule hotels to luxury skyscrapers.</p>
+    </div>
+
+    <div class="post">
+      <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34">
+      <h3>Complete Guide to Southeast Asia Travel</h3>
+      <p>Everything you need to know before travelling through Thailand, Bali and Singapore.</p>
+    </div>
+
+    <div class="post">
+      <img src="https://images.unsplash.com/photo-1504691342899-ae9a0b6d5c8f">
+      <h3>Luxury vs Budget: Where to Stay in Bali</h3>
+      <p>Is luxury worth the splurge, or do budget stays deliver the same experience?</p>
+    </div>
+
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter">
+    <h4>Get Travel Stories & Deals</h4>
+    <p>Join our mailing list for guides, inspiration, and flight deals.</p>
+
+    <form action="https://formspree.io/f/xlggylyd" method="POST">
+      <input type="email" name="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© Flight07</p>
+  <p>
+    <a href="#">About</a> |
+    <a href="#">Contact</a> |
+    <a href="#">Disclosure</a>
+  </p>
+</footer>
+
+</body>
+</html>
